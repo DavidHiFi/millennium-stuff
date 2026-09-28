@@ -3,6 +3,14 @@
 My [Millennium](https://steambrew.app) setup for the Steam client: the theme I actually
 run, the acrylic plugin it needs, and the config that ties them together.
 
+## Download
+
+- Packaged zip of everything (theme, plugin, installer, docs):
+  [latest release](https://github.com/DavidHiFi/millennium-stuff/releases/latest)
+- Or just the theme folder:
+  [themes/mocha-steam](https://github.com/DavidHiFi/millennium-stuff/tree/main/themes/mocha-steam)
+- Or clone it: `git clone https://github.com/DavidHiFi/millennium-stuff`
+
 ## What's in here
 
 | Path | What it is |
