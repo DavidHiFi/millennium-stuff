@@ -108,3 +108,31 @@
 ._1ijTaXJJA5YWl_fW2IxcaT {
     background-color: transparent !important;
 }
+
+
+
+/*
+& Modal dialogs (Millennium settings, Steam settings): one solid surface.
+& Sub-panels and section rows each painted another 55% layer, which showed up
+& as rectangles inside the dialog, and the tab strip differed from the content.
+*/
+body .PagedSettingsDialog,
+body .ModalPosition_Content {
+    background-color: rgba(var(--st-panel), var(--st-panel-opacity)) !important;
+    border-radius: var(--st-border-radius);
+}
+
+body .DialogContent_InnerWidth,
+body ._2kwFFHckg8jvnwJfg9-la8,
+body .DialogBody > .Panel,
+body .DialogSubHeader,
+body .SettingsDialogSubHeader,
+body .DialogBody .eKmEXJCm_lgme24Fp_HWt ._2tALpM7z8naXJ35Pp5fNAG ._2VcTlXFC64Jtg9gvtT6cmY,
+body .DialogBody .eKmEXJCm_lgme24Fp_HWt ._2tALpM7z8naXJ35Pp5fNAG ._1W1to_azoBRG95oNAFpf9Q {
+    background-color: transparent !important;
+}
+
+[class*="MillenniumThemes_ThemeItem"]:hover {
+    background-color: rgba(var(--st-panel-hover), 0.5) !important;
+    border-radius: var(--st-border-radius);
+}

@@ -1,14 +1,12 @@
 {
-    "name": "SpaceTheme for Steam",
-    "description": "Theme with a dark aesthetic and modular-inspired look, offering clarity, flexibility, and an enhanced user experience.",
-    "author": "SpaceEnergy",
+    "name": "Mocha Steam",
+    "description": "Catppuccin Mocha theme for the Steam client with a real acrylic backdrop. Fork of SpaceTheme by SpaceEnergy (https://github.com/SpaceTheme/Steam).",
+    "author": "DavidHiFi",
     "github": {
-        "owner": "SpaceTheme",
-        "repo_name": "Steam"
+        "owner": "DavidHiFi",
+        "repo_name": "millennium-stuff"
     },
-    "funding": { "kofi": "spacetheme" },
-    "discord_support": { "inviteCodeExcludingLink": "7Zv8Xz3Vzn" },
-    "tags": [ "WIP", "Modular", "Dark", "Customizable"],
+    "tags": [ "WIP", "Modular", "Dark", "Customizable", "Catppuccin Mocha" ],
     "header_image": "https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/banner.webp",
     "splash_image": "https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/preview.webp",
     "Conditions": {

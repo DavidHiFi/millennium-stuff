@@ -7,7 +7,7 @@ run, the acrylic plugin it needs, and the config that ties them together.
 
 | Path | What it is |
 | --- | --- |
-| `themes/enhanced-space-theme/` | [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) with my changes (label removed, Catppuccin Mocha + blue palette, extra font option, clean chrome) |
+| `themes/mocha-steam/` | **Mocha Steam** - my own Catppuccin Mocha theme for Millennium, built as a fork of [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) |
 | `plugins/dwmx/` | [DWMX (Window Styler)](https://github.com/ejalxndr/dwmx) built and patched so the acrylic backdrop actually works on current Windows 11 |
 | `plugins/dwmx-src/` | The patched DWMX source files (`backend/main.lua`, `frontend/index.tsx`) plus the theme CSS that goes with it |
 | `configs/millennium-config.example.json` | Millennium config showing the theme options and enabled plugins I use |
@@ -20,33 +20,34 @@ run, the acrylic plugin it needs, and the config that ties them together.
 # look first, changes nothing
 pwsh -File .\install.ps1
 
-# install theme + plugin (backs up the existing theme folder)
+# install theme + plugin (backs up anything it replaces)
 pwsh -File .\install.ps1 -Apply
 
-# also set the theme options in Millennium's config (Steam must be closed)
+# also point Millennium at Mocha Steam and set its options (Steam must be closed)
 pwsh -File .\install.ps1 -Apply -Configure
 ```
 
-Then in Millennium: **Themes → SpaceTheme → General** and pick
-`Font: FiraCode Nerd Font`, `Mica & Acrylic plugin support: yes`.
+Then in Millennium, **Themes**: enable **Mocha Steam**. Its options live under
+General / Other: `Font` and `Mica & Acrylic plugin support`.
 
-`install.ps1` copies the theme into `millennium\themes\Steam` (same folder name the
-SpaceTheme install uses, so the config keeps working) and the plugin into
-`millennium\plugins\dwmx`. Restart Steam after installing.
+`install.ps1` installs the theme to `millennium\themes\MochaSteam` and the plugin to
+`millennium\plugins\dwmx`. It never touches a SpaceTheme install - that stays a
+separate, stock theme.
 
-## Enhanced Space Theme
+## Mocha Steam
 
-Fork of SpaceTheme. Changes, all in `themes/enhanced-space-theme`:
+My theme, author DavidHiFi, forked from SpaceTheme by SpaceEnergy (MIT, credited in
+`NOTICE.md`). Changes, all in `themes/mocha-steam`:
 
 - The "Space"/"Theme" text next to the Steam logo is gone from the theme itself.
 - `FiraCode Nerd Font` added to the font dropdown.
-- Catppuccin Mocha palette with Blue/Lavender accents (`src/css/plugins/dwmx.css`).
-- Chrome (bottom bar, titlebar controls) is solid Mocha instead of washed-out grey;
-  "Add shelf" gets one soft hairline.
+- Catppuccin Mocha palette with Blue/Lavender accents.
+- Chrome (bottom bar, titlebar controls, modal dialogs) is one solid Mocha surface
+  instead of stacked translucent sub-panels.
 - Inner containers no longer stack alpha layers over the window tint, which is what
   made the library darker than the sidebar (a hard edge) and killed the blur.
 
-Full detail: `docs/enhanced-space-theme.md`.
+Full detail: `docs/mocha-steam.md`.
 
 ## DWMX acrylic plugin
 
@@ -59,7 +60,7 @@ Full detail: `docs/dwmx-acrylic-plugin.md`.
 
 ## Credits and licenses
 
-- Theme: [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) by SpaceEnergy, MIT.
+- Theme base: [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) by SpaceEnergy, MIT.
 - Plugin: [DWMX](https://github.com/ejalxndr/dwmx) by ejalxndr, Apache-2.0.
 - Palette: [Catppuccin](https://github.com/catppuccin/catppuccin), MIT.
 - My changes: MIT, see `LICENSE` and `NOTICE.md`.
