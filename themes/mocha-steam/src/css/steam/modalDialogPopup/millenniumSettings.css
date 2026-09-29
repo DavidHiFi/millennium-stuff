@@ -24,7 +24,12 @@ body .MillenniumDesktopSidebar {
     margin: 16px 0;
     padding: 16px;
     border-radius: var(--st-border-radius);
-    background-color: rgb(var(--st-color-1));
+    /* Frosted, not just translucent: library art behind it was reading straight
+       through the 55% fill with no filter. */
+    background-color: var(--st-glass);
+    -webkit-backdrop-filter: var(--st-glass-blur);
+    backdrop-filter: var(--st-glass-blur);
+    box-shadow: inset 0 0 0 1px var(--st-edge), 0 10px 32px rgba(0, 0, 0, 0.55);
     transform: translate(-50%, -50%);
     transition: unset;
 }
@@ -205,6 +210,25 @@ body ._2kwFFHckg8jvnwJfg9-la8 ._1-vlriAtKYDViAEunue4VO[id*="/settings/logs"] ._1
 }
 
 
+
+
+/*
+& Settings sections. Each block ("On Startup", "Updates", "Notifications", ...)
+& sat on the same tone as the dialog surface behind it, so nothing separated one
+& segment from the next. Every section is its own rounded, edged panel now, and
+& the per-row fills inside it are dropped so each panel is one flat surface.
+*/
+body .MillenniumSettings .DialogControlsSection {
+    margin: 0 0 16px;
+    padding: 8px 0 12px;
+    border-radius: var(--st-border-radius, 16px);
+    background-color: rgba(var(--st-surface-0, 49, 50, 68), 0.3);
+    box-shadow: inset 0 0 0 1px var(--st-edge, rgba(88, 91, 112, 0.7));
+}
+
+body .MillenniumSettings .DialogControlsSection .Field {
+    background-color: transparent !important;
+}
 
 
 /*

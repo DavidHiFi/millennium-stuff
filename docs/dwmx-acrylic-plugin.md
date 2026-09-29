@@ -48,6 +48,25 @@ is dropped.
 transparency-capable, matching the "Change Window Params" plugin's transparent
 window flags.
 
+## 4. The blur vanished after some restarts
+
+The accent is applied when the plugin loads, but DWM only honours it at the next
+window recomposite. On a cold start Steam's main window is already composited by
+the time the plugin patches, so the accent sat inert: the desktop wallpaper showed
+sharp through the theme's translucent surfaces, with visible tone lines where the
+surfaces met, until the window was minimized and restored by hand.
+
+`PatchWindowContext` now follows every patch with
+
+```lua
+SetWindowPos(hwnd, NULL, 0, 0, 0, 0,
+    SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | SWP_FRAMECHANGED)
+```
+
+which forces that recomposite without moving, resizing, restacking or focusing the
+window. Verified live in one session on one window: accent off + frame change =
+sharp wallpaper, accent on + frame change = frosted blur.
+
 ## Files
 
 - `plugins/dwmx/` - the built plugin, drop into `millennium\plugins\dwmx`.

@@ -67,6 +67,7 @@ typedef struct _WINDOWCOMPOSITIONATTRIBDATA {
 } WINDOWCOMPOSITIONATTRIBDATA;
 
 BOOL SetWindowCompositionAttribute(HWND hWnd, WINDOWCOMPOSITIONATTRIBDATA* data);
+BOOL SetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags);
 ]]
 
 local C = ffi.C
@@ -188,6 +189,15 @@ local function PatchWindowContext(hwnd)
         logger:error("EnableBlurBehind failed, falling back to system backdrop")
         local ok2 = EnableWindowBackdrop(hwnd)
         if not ok2 then logger:error("EnableWindowBackdrop failed") end
+    end
+    -- The accent only takes effect once DWM recomposites the window. Applied
+    -- after the window's composition already exists (plugin load, restarts)
+    -- it stays inert until a frame change - the "blur vanished after a
+    -- restart" bug. SWP_FRAMECHANGED forces the refresh without moving,
+    -- resizing, restacking or focusing the window.
+    local SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED = 0x37
+    if not user32.SetWindowPos(hwnd, nil, 0, 0, 0, 0, SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED) then
+        logger:error("SetWindowPos frame refresh failed")
     end
 end
 

@@ -87,6 +87,17 @@ like the rest now, console input included.
 please do not make bug reports" box in the bottom-right of the in-game overlay.
 The rule is deleted; the overlay's dim background is unchanged.
 
+### 9. Millennium's own dialogs
+
+- Settings pages are divided into bordered sections ("On Startup", "Updates",
+  ...) with the per-row fills flattened, so each block reads as its own panel
+  against the dialog surface (`src/css/steam/modalDialogPopup/millenniumSettings.css`).
+- The Library Settings panel (`MillenniumDesktopSidebar`) is frosted now
+  (`--st-glass` + `--st-glass-blur`) instead of a plain 55% fill that the library
+  art showed through sharp.
+- The shelf "move panel" grip (the hamburger next to the shelf title) is centered
+  on the header row instead of hanging over its top edge (`src/icons/fluent/fluent.css`).
+
 ## Install
 
 Copy the folder to `C:\Program Files (x86)\Steam\millennium\themes\MochaSteam`, or run
