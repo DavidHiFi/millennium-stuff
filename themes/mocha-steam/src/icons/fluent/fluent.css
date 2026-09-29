@@ -351,11 +351,10 @@
 
 
 
-/* Move pannel, libhome. The glyph sat in the top half of its box, so the grip
-   hung over the shelf header's edge instead of sitting on it. Box centered on
-   the 32px header row, glyph centered in the box. */
+/* Center the shelf drag handle in headers of any height. */
 ._1OGfHXv6ksR1Ub-OuLN2NB {
-    top: 6px !important;
+    top: 50% !important;
+    transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -367,7 +366,7 @@
     font-size: 16px;
     line-height: 1;
     color: #67707b;
-    transform: translateY(3px);
+    transform: none;
 }
 ._1OGfHXv6ksR1Ub-OuLN2NB>svg {
     display: none;
