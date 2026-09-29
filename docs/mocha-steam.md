@@ -97,6 +97,19 @@ The rule is deleted; the overlay's dim background is unchanged.
   art showed through sharp.
 - The shelf "move panel" grip (the hamburger next to the shelf title) is centered
   on the header row instead of hanging over its top edge (`src/icons/fluent/fluent.css`).
+- Plugin and theme rows are individual rounded cards now (`--st-surface-0` fill,
+  `--st-edge` ring, 8px gap) instead of a continuous list of text.
+- Every settings tab carries its own edge; the active tab lifts to surface0 with
+  a blue rim, so the open tab is obvious against the dialog surface.
+
+### 10. Top strip (menu bar / super nav)
+
+The strip above the content (`._3Z7VQ1IMk4E3HsHvrkLNgo`) was `background: none`,
+so it was fully translucent: a bright app behind the window (Discord) showed
+straight through it as a lighter block with a hard edge above the sidebar - the
+"line where it cuts off". It now carries the same solid chrome surface as the
+rest of the title bar (`rgba(mantle, 0.92)`, `src/css/steam/titlebar.css`), so
+the strip stays one tone whatever is behind the window.
 
 ## Install
 

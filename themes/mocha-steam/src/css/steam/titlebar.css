@@ -5,9 +5,17 @@
 
 
 
+/*
+! Top strip (Steam menu bar + super nav row).
+& It used to be `background: none`, so the strip was fully translucent: a
+& bright app behind the window (Discord) showed straight through it as a
+& lighter block with a hard edge - the "line where it cuts off" above the
+& sidebar. It now carries the same solid chrome surface as the rest of the
+& title bar, so the strip stays one tone no matter what is behind the window.
+*/
 ._3Z7VQ1IMk4E3HsHvrkLNgo {
     box-shadow: none !important;
-    background: none !important;
+    background: rgba(var(--st-mantle, 24, 24, 37), 0.92) !important;
 }
 ._39oUCO1OuizVPwcnnv88no {
     height: 46px;
