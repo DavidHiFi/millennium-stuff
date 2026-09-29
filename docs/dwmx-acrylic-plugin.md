@@ -67,6 +67,16 @@ which forces that recomposite without moving, resizing, restacking or focusing t
 window. Verified live in one session on one window: accent off + frame change =
 sharp wallpaper, accent on + frame change = frosted blur.
 
+## Dark tint on the accent (2026-09-30)
+
+`policy.nColor` was `0x00000000` - a fully transparent gradient color - so the
+backdrop was the raw blurred wallpaper/apps. Behind the theme's translucent
+surfaces a bright app (Discord at the top-left of this desktop) showed through
+as bright patches with hard edges, which read as "blocky" bugs wherever the
+window behind changed. The accent now carries a Catppuccin mantle tint
+(`0xE0251818` in ABGR = RGB 24,24,37 at ~0.88 alpha): the blur stays, but the
+backdrop is flattened to one dark tone, so those patches disappear.
+
 ## Files
 
 - `plugins/dwmx/` - the built plugin, drop into `millennium\plugins\dwmx`.

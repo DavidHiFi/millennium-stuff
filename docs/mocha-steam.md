@@ -111,6 +111,22 @@ straight through it as a lighter block with a hard edge above the sidebar - the
 rest of the title bar (`rgba(mantle, 0.92)`, `src/css/steam/titlebar.css`), so
 the strip stays one tone whatever is behind the window.
 
+### 11. Backdrop blocks ("blocky" patches)
+
+Two more places where the raw blurred backdrop read through as blocks: a bright
+patch over the sidebar pills and a tone step in the library content. Root cause:
+the acrylic accent had no tint (see `docs/dwmx-acrylic-plugin.md`), so the
+backdrop kept the brightness of whatever window was behind Steam. Fixed on three
+levels:
+
+- DWMX accent tint: mantle at ~0.88 alpha (`0xE0251818`), flattens the backdrop.
+- Sidebar panel: 0.8 -> 0.9 (`--st-sidebar-bg` in `src/css/regular.css`).
+- Page surfaces: `Mica Transparency` option 55 -> 75 (config), so the window
+  base and the pills are more opaque.
+
+Measured after: the sidebar is flat within 1-2 levels over its whole height and
+the library content within ~6 (blur gradient), against 20-30 before.
+
 ## Install
 
 Copy the folder to `C:\Program Files (x86)\Steam\millennium\themes\MochaSteam`, or run
