@@ -12,6 +12,7 @@
     --st-color-5: 49, 50, 68, var(--st-mica-transparency, 50%) !important;
     --st-color-6: 24, 24, 37, var(--st-mica-transparency, 50%) !important;
     --st-background: 30, 30, 46, var(--st-mica-transparency, 50%) !important;
+    --st-background-rgb: 30, 30, 46 !important;
 
     /* Chrome surfaces: solid enough to read, with a subtle edge */
     --st-panel: 24, 24, 37;          /* mantle */

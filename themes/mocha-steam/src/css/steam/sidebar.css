@@ -506,7 +506,7 @@ div[style*="height: 0px;"]:has(> ._2iJsgdTIX9Tj23rWnB7Q-c) {
     padding: 12px;
     border-radius: var(--st-border-radius);
     background-color: rgb(var(--st-blue));
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
 }
 
 ._1_yS5UP7el0aN4vntx3dx ._2iJsgdTIX9Tj23rWnB7Q-c ._1sMxtPKaL0DcIZgJCQRduV {
@@ -716,6 +716,12 @@ body:not(:has(._1ijTaXJJA5YWl_fW2IxcaT)) ._3cykd-VfN_xBxf3Qxriccm {
     background-color: var(--st-sidebar-bg, rgba(24, 24, 37, 0.8)) !important;
     border-radius: var(--st-border-radius);
     box-shadow: inset 0 0 0 1px var(--st-edge, rgba(88, 91, 112, 0.7));
+    /* Frost filter, same value as the top strip and the content pane. The fill
+       stays at 0.9 on purpose (0.8 is what let a bright app behind the window
+       through as a lighter block), so most of the panel is fill and only the
+       top 10% shows backdrop. */
+    -webkit-backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
+    backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
 }
 
 /* Inner surfaces stay transparent so they never stack a second alpha layer */

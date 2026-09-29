@@ -127,6 +127,28 @@ levels:
 Measured after: the sidebar is flat within 1-2 levels over its whole height and
 the library content within ~6 (blur gradient), against 20-30 before.
 
+### 12. Glass and readable artwork overlays
+
+The top strip uses the content pane's mantle tint at 0.75. Its `::before`
+layer carries the frost filter so the bar does not become the positioning
+anchor for the bottom-left account and options controls. The sidebar keeps
+its 0.9 fill. The content pane and sidebar declare the same 20px frost filter.
+
+Header chips and HowLongToBeat pills now have a mantle fill at 0.72 and a 6px
+filter. Their previous color declarations became invalid when DWMX added an
+alpha component to the palette variables. The theme now uses RGB-only
+variables when a declaration supplies its own alpha, which also restores the
+missing shadows across the library and store.
+
+The visible wallpaper blur comes from DWMX's Windows acrylic backdrop.
+Increasing CSS `backdrop-filter` on a surface whose backdrop is a flat page
+fill does not increase that wallpaper blur. The existing acrylic tint and
+sidebar opacity remain in place to prevent bright patches.
+
+Notification cards and the notification menu use a 0.9 mantle fill with no
+local backdrop filter. The menu also removes the outer shadow to avoid a
+blurred patch at the popup window's clipped edge.
+
 ## Install
 
 Copy the folder to `C:\Program Files (x86)\Steam\millennium\themes\MochaSteam`, or run

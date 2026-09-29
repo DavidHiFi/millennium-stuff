@@ -60,6 +60,18 @@
     border: none;
     background-color: rgb(var(--st-background)) !important;
 }
+
+/*
+& The main content pane gets the same frost filter as the floating surfaces.
+& Measured 2026-09-30: the pane's backdrop inside the page is only the window
+& wrapper's flat fill, so this changes no pixels on its own - the wallpaper
+& blur comes from the DWMX acrylic, which CSS cannot reach. It is here so the
+& pane carries the same declared glass as the title strip and sidebar.
+*/
+._3lDczhulqraStjCitLYJ1K {
+    -webkit-backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
+    backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
+}
 ._1rDh5rXSFZJOqCa4UpnI4z {
     margin: 0 16px 16px;
     border-radius: var(--st-border-radius);

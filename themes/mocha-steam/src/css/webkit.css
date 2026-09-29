@@ -206,7 +206,7 @@ body .a3nhjc9lykk-:not(:has(.MKj0TKJbfZY-[aria-label*="%"])) .DOnsaVcV0Is- {
     border-radius: var(--st-border-radius);
     background: none;
     background-color: rgb(var(--st-color-2));
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
 }
 
 .h2B3SGR_w4RWdrnsRZEcD ._16jZ3HEbtaJTl80pQINN2Y ._7FiqKP7fZJGltkwRxPG6s,
@@ -229,7 +229,7 @@ html body.v6 .StoreMenuLoadingPlaceholder .PlaceholderInner {
     border-radius: var(--st-border-radius);
     background: none;
     background-color: rgb(var(--st-color-2));
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
     transform: translate(-50%);
 }
 
@@ -690,7 +690,7 @@ html body.v6 .broadcast_live_stream_icon {
     border-radius: var(--st-border-radius);
     color: #fff !important;
     background: unset;
-    background-color: rgb(var(--st-background), .6);
+    background-color: rgba(var(--st-background-rgb), 0.6);
     box-shadow: unset;
 }
 
@@ -763,7 +763,7 @@ html body.v6 .ds_options>div {
     border-radius: var(--st-border-radius);
     background: unset;
     background-color: rgb(var(--st-color-5));
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
 }
 
 html body.v6 .ds_options>div::before {
@@ -895,7 +895,7 @@ html body.v6 .ds_wishlist_flag::before {
     margin: 6px auto 12px;
     padding: 12px 16px;
     border-radius: 100px;
-    background-color: rgb(var(--st-color-2), .8);
+    background-color: rgba(var(--st-base, 30, 30, 46), 0.8);
 }
 
 .carousel_container .carousel_thumbs > div,

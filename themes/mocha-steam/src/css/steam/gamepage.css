@@ -83,12 +83,18 @@
     font-weight: 700;
     border: unset;
     color: #fff;
-    background-color: rgb(var(--st-color-1), .65);
-    backdrop-filter: blur(4px);
+    /* Was `rgb(var(--st-color-1), .65)`: with dwmx.css --st-color-1 already
+       carries the mica alpha, so the value expanded to five arguments, was
+       invalid and dropped. What was left was a 4px blur of the banner with no
+       fill, which is why INSTALLED / LUA TOOLS / STEAMTOOLS sat unreadable on
+       the artwork. Readability comes from the fill, not from more blur. */
+    background-color: rgba(var(--st-panel, 24, 24, 37), 0.72) !important;
+    backdrop-filter: blur(6px) !important;
+    -webkit-backdrop-filter: blur(6px) !important;
     box-shadow: 0px 4px 8px 0px rgb(0 0 0 / 50%);
 }
 ._1HS4twEHtDJ_8MWgJT4VBd:hover {
-    background-color: rgb(var(--st-color-2), .65);
+    background-color: rgba(var(--st-panel-hover, 49, 50, 68), 0.72) !important;
 }
 
 
@@ -124,8 +130,8 @@
     padding: 6px 12px;
     outline: 2px solid rgb(var(--st-yellow));
     border-radius: var(--st-border-radius);
-    background-color: rgb(var(--st-color-1), .6);
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    background-color: rgba(var(--st-mantle, 24, 24, 37), 0.6);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
 }
 
 /* Icon */
@@ -158,7 +164,7 @@
     padding: 12px;
     border-radius: var(--st-border-radius);
     background-color: rgb(var(--st-color-1), .6);
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
 }
 
 
@@ -1356,5 +1362,5 @@ div:has(>._1J21tLst5SEhBPkVRT53UV._28ZR8gHitOrJaSLxcIAl2p) {
     border-radius: var(--st-border-radius);
     background: unset;
     background-color: rgb(var(--st-color-2));
-    box-shadow: 0px 4px 8px 0px rgba(var(--st-background), 0.5);
+    box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
 }

@@ -12,6 +12,11 @@
     --st-surface-0: 49, 50, 68;
     --st-surface-1: 69, 71, 90;
     --st-surface-2: 88, 91, 112;
+    /* RGB half of --st-background. --st-background itself carries the mica
+       alpha once dwmx.css is on, so `rgba(var(--st-background), .5)` expands
+       to five arguments and drops; shadows and fills that want "the
+       background colour at a given alpha" use this instead. */
+    --st-background-rgb: 10, 10, 10;
     /* One continuous library-sidebar panel. 0.9 since 2026-09-30: at 0.8 a
        bright app behind the window still showed through as a lighter block
        with hard edges ("blocky" patch over the top pills). The acrylic accent
