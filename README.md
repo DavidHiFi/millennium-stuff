@@ -54,6 +54,11 @@ My theme, author DavidHiFi, forked from SpaceTheme by SpaceEnergy (MIT, credited
   instead of stacked translucent sub-panels.
 - Inner containers no longer stack alpha layers over the window tint, which is what
   made the library darker than the sidebar (a hard edge) and killed the blur.
+- The sidebar is one continuous panel at the width you set on every page (console,
+  store, community included), with the downloads chip aligned to the account chip,
+  and the console page is themed to match.
+- Menus, dropdowns and notifications are frosted glass (`backdrop-filter`), and the
+  overlay's experimental-warning box is gone.
 
 Full detail: `docs/mocha-steam.md`.
 

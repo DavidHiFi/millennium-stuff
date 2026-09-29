@@ -51,6 +51,42 @@ places had the problem, both fixed in `dwmx.css`:
   fill on hover. No inset rings on panels - nested panels (the downloads row lives
   inside the bottom bar) doubled them up and drew hard edges.
 
+### 6. Sidebar: one panel, the width you set, on every page
+
+Three sidebar artifacts, fixed in `src/css/steam/sidebar.css` and
+`options/general/fixedSidebar.css`:
+
+- **The line where the tint cut off.** Only the top block (Home / Games and
+  Software / search) and the bottom chrome were tinted, so the tint stopped dead
+  above the game list and read as a hard edge. The whole column is one panel now
+  (`._3x1HklzyDs4TEjACrRO2tB`), inner surfaces are transparent so nothing stacks
+  a second alpha layer, and the divider under the search block is gone.
+- **The downloads chip wider than the sidebar off the library page.** The
+  "Always show sidebar" option pins `width: unset !important` on the sidebar
+  column whenever the library content is hidden (console, store, community),
+  which cancelled `Sidebar width: 400` - the sidebar fell back to Steam's 256px
+  default while the chip and the user panel stayed sized for 400.
+  `fixedSidebar.css` re-asserts the width with enough specificity to win in
+  every page state, and the chip is now sized like the account chip below it
+  (same inset, same 6px gap, stacked).
+- **Panel see-through.** The panel fill is 0.8, not 0.55 (`--st-sidebar-bg` in
+  `src/css/regular.css`): at 0.55 the wallpaper behind the window bled through as
+  a tone edge where its sky/ground line crossed the list. 0.8 keeps the glass
+  look with that edge below visibility.
+
+### 7. Themed console page
+
+`src/css/steam/consolePage.css` (new, imported from
+`src/css/libraryroot.custom.css`): Steam paints the console with its own teal
+panel and square corners, so it never matched Mocha. It is one rounded surface
+like the rest now, console input included.
+
+### 8. Overlay notice removed
+
+`src/css/overlay.custom.css`: SpaceTheme drew an "overlay is experimental,
+please do not make bug reports" box in the bottom-right of the in-game overlay.
+The rule is deleted; the overlay's dim background is unchanged.
+
 ## Install
 
 Copy the folder to `C:\Program Files (x86)\Steam\millennium\themes\MochaSteam`, or run

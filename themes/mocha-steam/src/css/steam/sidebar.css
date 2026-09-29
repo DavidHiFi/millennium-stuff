@@ -702,3 +702,88 @@ body:not(:has(._1ijTaXJJA5YWl_fW2IxcaT)) ._3cykd-VfN_xBxf3Qxriccm {
     height: 280px;
     background-color: rgb(var(--st-accent-2)) !important;
 }
+
+
+
+/*
+& One continuous Mocha panel behind the whole sidebar.
+& Before, only the top block (Home / Games and Software / search) and the
+& bottom chrome were tinted, so the tint stopped dead above the game list and
+& read as a line that got darker and cut off. The panel now spans the full
+& column and the inner surfaces are flattened so nothing double-stacks.
+*/
+._3x1HklzyDs4TEjACrRO2tB {
+    background-color: var(--st-sidebar-bg, rgba(24, 24, 37, 0.8)) !important;
+    border-radius: var(--st-border-radius);
+    box-shadow: inset 0 0 0 1px var(--st-edge, rgba(88, 91, 112, 0.7));
+}
+
+/* Inner surfaces stay transparent so they never stack a second alpha layer */
+._3x1HklzyDs4TEjACrRO2tB ._2TKEazUUS3TlniZfpc8OOe,
+._3x1HklzyDs4TEjACrRO2tB ._1ZS_xta5HMXzR8JgxDH6n7,
+._3x1HklzyDs4TEjACrRO2tB ._20QAC4WMXm8qFE8waUT5oo,
+._3x1HklzyDs4TEjACrRO2tB ._1ijTaXJJA5YWl_fW2IxcaT {
+    background-color: transparent !important;
+}
+
+/* The hard divider that used to cut the search block off the game list */
+._3x1HklzyDs4TEjACrRO2tB ._20QAC4WMXm8qFE8waUT5oo::after {
+    display: none !important;
+}
+
+/*
+& Differentiated Mocha edge on the sidebar's pills, so each control reads as
+& its own surface instead of floating flat on the panel.
+*/
+._3x1HklzyDs4TEjACrRO2tB ._3pSPluBgf0NeR1kkCLWMhR,
+._3x1HklzyDs4TEjACrRO2tB ._2PF_m-I5yte3WnQhpcz8RC,
+._3x1HklzyDs4TEjACrRO2tB ._3mzKdQXht__YHo6PX1LmB6,
+._3x1HklzyDs4TEjACrRO2tB ._12vo5L1hsNGdao6_ssuirS,
+._3x1HklzyDs4TEjACrRO2tB .vCCmYvn9yQ_V8CpKupllU,
+._3x1HklzyDs4TEjACrRO2tB .uE7Pj4tb2n3_Bx4vjEX0a,
+._3cykd-VfN_xBxf3Qxriccm ._2Szzh5sKyGgnLUR870zbDE,
+._3cykd-VfN_xBxf3Qxriccm ._1TdaAqMFadi0UTqilrkelR,
+._3cykd-VfN_xBxf3Qxriccm ._3yD46y5pd3zOGR7CzKs0mC {
+    box-shadow: inset 0 0 0 1px var(--st-edge, rgba(88, 91, 112, 0.7)) !important;
+}
+
+/*
+& SpaceTheme's logo badge next to the HOME label - not ours, drop it.
+*/
+._3x1HklzyDs4TEjACrRO2tB ._3pSPluBgf0NeR1kkCLWMhR ._1ooROmAgkhoBH_o65yl9dJ {
+    display: none !important;
+}
+
+/*
+& Downloads chip: same inset and width as the account chip below it, stacked
+& on top with the same 6px gap, so the two read as one stack instead of the
+& download bar floating wider than the user panel.
+*/
+body:has(._3x1HklzyDs4TEjACrRO2tB) ._1_yS5UP7el0aN4vntx3dx {
+    left: calc(16px + 6px) !important;
+    width: calc(var(--st-fixed-sidebar-width, 400px) - 12px) !important;
+    bottom: 106px !important;
+}
+body:has(._3x1HklzyDs4TEjACrRO2tB):not(:has(._1_yS5UP7el0aN4vntx3dx .wi0pDywRgOCxhG7OqQNaA)) ._1_yS5UP7el0aN4vntx3dx {
+    height: 44px !important;
+}
+body:has(._3x1HklzyDs4TEjACrRO2tB):has(._3E5iVG630BkOHTaJJaMEMw) ._1_yS5UP7el0aN4vntx3dx {
+    bottom: 156px !important;
+}
+
+/*
+& The collections grid icon used the same Mocha fill as the button behind it,
+& so it disappeared into a flat blob. Lift the squares onto surface1/2.
+*/
+._3x1HklzyDs4TEjACrRO2tB .nC-pL16iUnIRcaj1UVnwq {
+    border-color: rgba(var(--st-surface-1, 69, 71, 90), 0.6) !important;
+}
+._3x1HklzyDs4TEjACrRO2tB .nC-pL16iUnIRcaj1UVnwq ._2tyaVs9BpqcW068aaOrO56 {
+    background-color: rgb(var(--st-surface-1, 69, 71, 90)) !important;
+}
+._3x1HklzyDs4TEjACrRO2tB .xeuK3OqQYpIbPs1mCIS0k:hover .nC-pL16iUnIRcaj1UVnwq {
+    border-color: rgb(var(--st-surface-2, 88, 91, 112)) !important;
+}
+._3x1HklzyDs4TEjACrRO2tB .xeuK3OqQYpIbPs1mCIS0k:hover .nC-pL16iUnIRcaj1UVnwq ._2tyaVs9BpqcW068aaOrO56 {
+    background-color: rgb(var(--st-surface-2, 88, 91, 112)) !important;
+}

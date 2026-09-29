@@ -63,13 +63,22 @@
 
 
 /*
-& Chrome surfaces - solid Mocha fills, no hard outlines
-& (bottom bar / user panel, titlebar controls). "Add shelf" keeps one very
-& soft hairline (surface1 at low alpha) because it reads as a button row.
+& Chrome surfaces. The bottom bar (downloads) and the user panel now sit on
+& the continuous sidebar panel, so they carry no fill of their own - only the
+& Mocha edge that separates them. "Add shelf" floats over the library content
+& and keeps a solid-enough fill plus the same edge.
 */
-[class~="BottomBar"],
-[class~="TitleBarControls"] {
-    background-color: rgba(var(--st-panel), var(--st-panel-opacity)) !important;
+body:has(._3x1HklzyDs4TEjACrRO2tB) [class~="BottomBar"] {
+    background-color: rgb(var(--st-color-3)) !important;
+    box-shadow: inset 0 0 0 1px var(--st-edge, rgba(88, 91, 112, 0.7)) !important;
+    color: rgb(var(--st-text-soft)) !important;
+}
+
+/* The user panel carries no fill of its own: its account row and icon pills
+   already paint the same chip, so filling it too would stack a second layer. */
+body:has(._3x1HklzyDs4TEjACrRO2tB) [class~="TitleBarControls"] {
+    background-color: transparent !important;
+    box-shadow: none !important;
     color: rgb(var(--st-text-soft)) !important;
 }
 
@@ -79,8 +88,10 @@
 
 [class~="AddShowcase"] {
     background-color: rgba(var(--st-panel), var(--st-panel-opacity)) !important;
-    box-shadow: inset 0 0 0 1px rgba(var(--st-hairline), 0.25) !important;
+    box-shadow: inset 0 0 0 1px rgba(var(--st-hairline), 0.55) !important;
     color: rgb(var(--st-text-soft)) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.25);
+    backdrop-filter: blur(12px) saturate(1.25);
 }
 
 [class~="AddShowcase"]:hover,
@@ -91,7 +102,7 @@
 }
 
 [class~="AddShowcase"]:hover {
-    box-shadow: inset 0 0 0 1px rgba(var(--st-hairline), 0.7) !important;
+    box-shadow: inset 0 0 0 1px rgba(var(--st-hairline), 0.9) !important;
 }
 
 
