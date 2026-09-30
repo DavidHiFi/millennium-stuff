@@ -152,6 +152,14 @@ body .DialogBody .eKmEXJCm_lgme24Fp_HWt ._2tALpM7z8naXJ35Pp5fNAG ._1W1to_azoBRG9
 
 /* One window tint over the native acrylic. Regional filters and extra
    title-strip fills create colour steps at the content frame's margins. */
+/* A filter on the store navbar stops its dropdowns from sampling the page.
+   Keep the backdrop on the dropdown itself so it blurs the banner below. */
+html.MillenniumWindow_SteamBrowser .h2B3SGR_w4RWdrnsRZEcD ._16jZ3HEbtaJTl80pQINN2Y,
+html.MillenniumWindow_SteamBrowser .dm2SGcwBwj4- .WCG-2-OYepA- {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+
 html.MillenniumWindow_MainSteamWindow ._1ENHEsrSLcTRtPQFl1F-wL {
     background-color: rgba(var(--st-mantle, 24, 24, 37), 0.55) !important;
     background-image: none !important;

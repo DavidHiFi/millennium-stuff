@@ -180,6 +180,20 @@ The native toast type and dimensions, saved-file parity, and store dropdown
 computed styles were verified. A fresh game launch and the full store dropdown
 appearance were not retested. No game files changed.
 
+### 14. Store dropdown backdrop root
+
+The actual store search dropdown could declare 16px blur and still show the
+banner sharply. Steam's navbar ancestor had its own 10px backdrop filter,
+which created a backdrop root. The dropdown's filter could only sample pixels
+inside that root rather than the page behind it.
+
+The DWMX stylesheet now removes backdrop filters from the current and legacy
+store navbar containers, scoped to `MillenniumWindow_SteamBrowser`. The search
+dropdown keeps its 16px filter. On the real store page, the dropdown's computed
+filter is 16px and every ancestor's filter is none. Installed-file hashes match.
+A fresh screenshot was unavailable while the owner's game was foreground,
+so this verification covers the actual DOM and styles, not a new visual capture.
+
 ## Install
 
 Copy the folder to `C:\Program Files (x86)\Steam\millennium\themes\MochaSteam`, or run
