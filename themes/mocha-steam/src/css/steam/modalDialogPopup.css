@@ -32,6 +32,29 @@ html .MillenniumSettings {
 
 
 /*
+! Native modal wrapper
+*/
+/* Steam mounts modals in a <dialog> that keeps the browser's 3px border. It has
+   no content box, so the border draws a 6px square at the window centre that
+   shows through the translucent dialog surface. */
+dialog._32QRvPPBL733SpNR9x0Gp3,
+dialog:has(> .ModalOverlayContent) {
+    border: none !important;
+    background: none !important;
+}
+
+
+/*
+! Millennium install progress
+*/
+/* The fill-available rule above overrides Millennium's 450px width, so the box
+   shrank to the status text ("Done") and the title ran past its edge. */
+body .DialogContent._DialogLayout.MillenniumInstallerDialog {
+    width: min(450px, calc(100vw - 64px)) !important;
+}
+
+
+/*
 ! Titel
 */
 ._2rjVTGz8aLvqOdz5v2gq5C,
