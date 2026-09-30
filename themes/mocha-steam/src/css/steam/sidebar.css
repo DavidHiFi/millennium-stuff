@@ -322,7 +322,7 @@ body.QsvsRVwbsApgKt1MhM0fz:has(._1_yS5UP7el0aN4vntx3dx .wi0pDywRgOCxhG7OqQNaA) .
     align-items: center;
 }
 
-._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ span {
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ span:not(.pdb-dot) {
     width: max-content;
     display: block;
     overflow: hidden;
@@ -332,7 +332,7 @@ body.QsvsRVwbsApgKt1MhM0fz:has(._1_yS5UP7el0aN4vntx3dx .wi0pDywRgOCxhG7OqQNaA) .
     position: relative;
 }
 
-._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ span::before {
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ span:not(.pdb-dot)::before {
     content: attr(data-st-hover-text);
     display: block;
     color: #a3aab9;
@@ -344,15 +344,15 @@ body.QsvsRVwbsApgKt1MhM0fz:has(._1_yS5UP7el0aN4vntx3dx .wi0pDywRgOCxhG7OqQNaA) .
     left: 0;
 }
 
-._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ._1UBpAXP408Ez_L_mXhW5Q9 span::before {
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ._1UBpAXP408Ez_L_mXhW5Q9 span:not(.pdb-dot)::before {
     color: rgb(var(--st-accent-1));
 }
 
-._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ._2ws8DONH9fxQjPXEmRpujE span::before {
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ._2ws8DONH9fxQjPXEmRpujE span:not(.pdb-dot)::before {
     color: #f1f7ff;
 }
 
-._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ:hover span::before {
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ:hover span:not(.pdb-dot)::before {
     animation: text-bounce var(--st-game-hover-duration) cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
 }
 
@@ -792,4 +792,14 @@ body:has(._3x1HklzyDs4TEjACrRO2tB):has(._3E5iVG630BkOHTaJJaMEMw) ._1_yS5UP7el0aN
 }
 ._3x1HklzyDs4TEjACrRO2tB .xeuK3OqQYpIbPs1mCIS0k:hover .nC-pL16iUnIRcaj1UVnwq ._2tyaVs9BpqcW068aaOrO56 {
     background-color: rgb(var(--st-surface-2, 88, 91, 112)) !important;
+}
+
+/* Keep ProtonDB indicators separate from the scrolling game titles. */
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ .pdb-dot {
+    display: inline-block;
+    width: 8px;
+    min-width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
 }

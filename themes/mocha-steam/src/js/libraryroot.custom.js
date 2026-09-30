@@ -176,7 +176,7 @@ async function setupGamesHovers() {
         const gameItems = gamesContainer.querySelectorAll(itemSelector);
 
         gameItems.forEach(item => {
-            const itemText = item.querySelector('span');
+            const itemText = item.querySelector('span:not(.pdb-dot)');
             if (!itemText) return;
 
             const separator = itemText.querySelector(separatorSelector);
