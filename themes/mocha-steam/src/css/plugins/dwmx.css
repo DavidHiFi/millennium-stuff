@@ -184,3 +184,14 @@ html.MillenniumWindow_MainSteamWindow ._3x1HklzyDs4TEjACrRO2tB {
     -webkit-backdrop-filter: none !important;
     backdrop-filter: none !important;
 }
+
+/* Interior panels let the existing native acrylic show through. */
+html.MillenniumWindow_MainSteamWindow {
+    --st-sidebar-bg: rgba(24, 24, 37, 0.50);
+    --st-panel-opacity: 58%;
+}
+html.MillenniumWindow_MainSteamWindow ._2gSXCB6PbOlMxslr8hm6dm,
+html.MillenniumWindow_MainSteamWindow .u1xD3KJEgksF_J_5TLZzO,
+html.MillenniumWindow_MainSteamWindow ._2sNr7PFYcJZWNkEMCDVVPR {
+    background-color: transparent !important;
+}
