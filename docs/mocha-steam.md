@@ -149,6 +149,37 @@ Notification cards and the notification menu use a 0.9 mantle fill with no
 local backdrop filter. The menu also removes the outer shadow to avoid a
 blurred patch at the popup window's clipped edge.
 
+### 13. Popup window conflict and continuous glass
+
+Windhawk's "Titlebar for Everyone" mod can force every Steam popup to use
+`browserType=3`. Steam then adds a frame area beneath a notification card,
+which exposes a second blurred strip. This also changes native overlay windows.
+
+If you use that Windhawk mod, add `steamwebhelper.exe` to its custom process
+exclusions. Keep existing exclusions. The registry setting is
+`HKLM\SOFTWARE\Windhawk\Engine\Mods\titlebar-for-everyone\ExcludeCustom`.
+Back up the setting first. This leaves the mod enabled for other applications
+and lets Steam use its native window controls and popup types. The theme
+installer does not edit Windhawk settings. Already running Steam windows may
+retain the injected popup wrapper until Steam next starts.
+
+A native in-game toast now measures 283 by 70 pixels, with its 283 by 66
+card and the normal 4px bottom margin, instead of the enlarged 299 by 109
+window. Cards use a 0.84 mantle fill and
+6px local blur with an inset edge. The notification menu keeps its 0.9 fill.
+Store search results and options dropdowns use a 0.78 mantle fill, 16px blur,
+and a 1px edge.
+
+DWMX's acrylic tint is now mantle at 50 percent. The main Steam window has
+one 0.55 mantle fill; its title bar and content pane are transparent, without
+separate regional filters. The sidebar keeps its 0.9 fill. These rules replace
+the earlier title-strip tint in section 12 and remove the colour seams between
+page regions.
+
+The native toast type and dimensions, saved-file parity, and store dropdown
+computed styles were verified. A fresh game launch and the full store dropdown
+appearance were not retested. No game files changed.
+
 ## Install
 
 Copy the folder to `C:\Program Files (x86)\Steam\millennium\themes\MochaSteam`, or run

@@ -148,3 +148,31 @@ body .DialogBody .eKmEXJCm_lgme24Fp_HWt ._2tALpM7z8naXJ35Pp5fNAG ._1W1to_azoBRG9
     background-color: rgba(var(--st-panel-hover), 0.5) !important;
     border-radius: var(--st-border-radius);
 }
+
+
+/* One window tint over the native acrylic. Regional filters and extra
+   title-strip fills create colour steps at the content frame's margins. */
+html.MillenniumWindow_MainSteamWindow ._1ENHEsrSLcTRtPQFl1F-wL {
+    background-color: rgba(var(--st-mantle, 24, 24, 37), 0.55) !important;
+    background-image: none !important;
+}
+html.MillenniumWindow_MainSteamWindow ._3Z7VQ1IMk4E3HsHvrkLNgo {
+    background: transparent !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+html.MillenniumWindow_MainSteamWindow ._3Z7VQ1IMk4E3HsHvrkLNgo::before {
+    content: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+html.MillenniumWindow_MainSteamWindow ._3lDczhulqraStjCitLYJ1K {
+    background-color: transparent !important;
+    background-image: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}
+html.MillenniumWindow_MainSteamWindow ._3x1HklzyDs4TEjACrRO2tB {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+}

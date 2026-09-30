@@ -141,12 +141,9 @@ local function EnableBlurBehind(hwnd)
     local policy = ffi.new("ACCENTPOLICY")
     policy.nAccentState = 4
     policy.nFlags = ACCENT_FLAG_ENABLE_BLURBEHIND
-    -- Dark Mocha tint on the acrylic backdrop (ABGR, Catppuccin mantle 24,24,37
-    -- at ~0.88). With no tint (0x00000000) the raw blurred backdrop showed
-    -- through the theme's translucent surfaces as bright patches with hard
-    -- edges (Discord behind the window). The tint keeps the blur but flattens
-    -- the backdrop, so those blocks disappear.
-    policy.nColor = 0xE0251818
+    -- Mantle tint at 50%. The previous 88% tint plus page fills hid the
+    -- acrylic. The theme now uses one 55% tint for the main background.
+    policy.nColor = 0x80251818
     policy.nAnimationId = 0
 
     local data = ffi.new("WINDOWCOMPOSITIONATTRIBDATA")
