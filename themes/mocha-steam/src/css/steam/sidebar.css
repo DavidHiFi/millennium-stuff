@@ -494,12 +494,18 @@ div:has(> ._2iJsgdTIX9Tj23rWnB7Q-c) {
     position: fixed !important;
     top: 40px;
     right: 50%;
-    opacity: 1 !important;
     overflow: visible !important;
     transform: translateX(50%);
 }
+/* Steam keeps an invisible measurement copy and animates the live notice.
+   Preserve its inline opacity so closing the notice can hide it. */
+div[style*="opacity: 0;"]:has(> ._2iJsgdTIX9Tj23rWnB7Q-c) {
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
 div[style*="height: 0px;"]:has(> ._2iJsgdTIX9Tj23rWnB7Q-c) {
     overflow: hidden !important;
+    pointer-events: none !important;
 }
 
 ._1_yS5UP7el0aN4vntx3dx ._2iJsgdTIX9Tj23rWnB7Q-c {

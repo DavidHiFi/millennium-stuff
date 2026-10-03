@@ -196,6 +196,8 @@ body .a3nhjc9lykk-:not(:has(.MKj0TKJbfZY-[aria-label*="%"])) .DOnsaVcV0Is- {
 */
 .h2B3SGR_w4RWdrnsRZEcD ._16jZ3HEbtaJTl80pQINN2Y,
 .dm2SGcwBwj4- .WCG-2-OYepA- {
+    position: relative;
+    isolation: isolate;
     box-sizing: border-box;
     width: 100%;
     max-width: var(--st-store-max-width);
@@ -205,8 +207,23 @@ body .a3nhjc9lykk-:not(:has(.MKj0TKJbfZY-[aria-label*="%"])) .DOnsaVcV0Is- {
     border: 0 !important;
     border-radius: var(--st-border-radius);
     background: none;
-    background-color: rgb(var(--st-color-2));
+    background-color: transparent !important;
     box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
+}
+
+/* Frost only the background layer, so dropdowns can sample the page instead
+   of a backdrop root created by filtering their navigation container. */
+.h2B3SGR_w4RWdrnsRZEcD ._16jZ3HEbtaJTl80pQINN2Y::before,
+.dm2SGcwBwj4- .WCG-2-OYepA-::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    background-color: var(--st-glass, rgba(24, 24, 37, 0.72)) !important;
+    -webkit-backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
+    backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
 }
 
 .h2B3SGR_w4RWdrnsRZEcD ._16jZ3HEbtaJTl80pQINN2Y ._7FiqKP7fZJGltkwRxPG6s,
@@ -228,7 +245,9 @@ html body.v6 .StoreMenuLoadingPlaceholder .PlaceholderInner {
     height: 42px;
     border-radius: var(--st-border-radius);
     background: none;
-    background-color: rgb(var(--st-color-2));
+    background-color: var(--st-glass, rgba(24, 24, 37, 0.72)) !important;
+    -webkit-backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
+    backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35)) !important;
     box-shadow: 0px 4px 8px 0px rgba(var(--st-background-rgb), 0.5);
     transform: translate(-50%);
 }

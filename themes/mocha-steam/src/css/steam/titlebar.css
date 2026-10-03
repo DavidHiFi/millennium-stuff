@@ -147,6 +147,31 @@
 
 
 
+/* Steam update notice: dark text contrasts with the bright blue fill. */
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ),
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ) ._2EXJTyc69b45nXI4h3RknI,
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ) .SwtQX-CurM3HPVJ9DPI1V,
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ) ._3om6pVKUdxdBkypYpSroHM {
+    color: #11111b !important;
+    text-shadow: none !important;
+}
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ) ._3om6pVKUdxdBkypYpSroHM,
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ) ._3om6pVKUdxdBkypYpSroHM:hover,
+body ._2iJsgdTIX9Tj23rWnB7Q-c:not(._2T8739wyg0K9mokTXWytuZ) ._3om6pVKUdxdBkypYpSroHM:focus-visible {
+    opacity: 1 !important;
+    text-decoration: underline !important;
+}
+body ._2iJsgdTIX9Tj23rWnB7Q-c ._2ohOQgahhMYnIEfAQmv9B8 {
+    color: #cdd6f4 !important;
+    background-color: #313244 !important;
+    text-shadow: none !important;
+}
+body ._2iJsgdTIX9Tj23rWnB7Q-c ._2ohOQgahhMYnIEfAQmv9B8:not(._TY57LlvVVnWqjaCz0EWr):hover,
+body ._2iJsgdTIX9Tj23rWnB7Q-c ._2ohOQgahhMYnIEfAQmv9B8:focus-visible {
+    color: #cdd6f4 !important;
+    background-color: #45475a !important;
+}
+
 /*
 ! Size
 */

@@ -68,3 +68,8 @@ body button.DialogButton {
     background: unset !important;
     background-color: unset !important;
 }
+/* Steam's hover shadow must follow the rounded button outline. */
+body button.DialogButton::before,
+body button.DialogButton::after {
+    border-radius: inherit !important;
+}
