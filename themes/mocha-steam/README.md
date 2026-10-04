@@ -1,188 +1,31 @@
-<div align="center">
-<h3><img height="76px" src="https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/logo.webp"></h3>
+# Mocha Steam
 
-[Community](https://discord.spacetheme.net) | [Support the Project](https://kofi.spacetheme.net) | [Website](https://spacetheme.net)
+Catppuccin Mocha for Steam, with rounded controls, frosted menus and Blue/Lavender accents. By DavidHiFi, forked from [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) by SpaceEnergy.
 
-![GitHub Org's stars](https://img.shields.io/github/stars/SpaceTheme?style=for-the-badge&logo=github&labelColor=%23111111&color=%231e1e1e)
-<hr>
-</div>
+![Mocha Steam preview](https://raw.githubusercontent.com/DavidHiFi/MochaSteam/main/.github/assets/preview.png)
 
-![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/preview.webp)
-<details>
-    <summary>More images (10. Nov. 2025)</summary>
+## Install
 
-|  Library home  |  Library gamepage  |
-|  :---:  |  :---:  |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/libHome.webp)  |  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/libGamepage.webp)  |
-|  **Store**  |  **Store Gamepage**  |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/storePage.webp)  |  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/storeGamepage.webp)  |
-|  **Store Wishlist**  |  **Store Cart**  |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/storeWishlist.webp)  |  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/storeCart.webp)  |
-|  **Store News**  |  **Community**  |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/storeNews.webp)  |  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/communityPage.webp)  |
-|  **Friend list & Chat**  |    |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/friendAndChat.webp)  |    |
-</details>
-<details>
-    <summary>More images (Concepts)</summary>
+Install [Millennium](https://docs.steambrew.app/users/getting-started/installation) first.
 
-|  Library home  |  Library gamepage  |
-|  :---:  |  :---:  |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/concepts/conceptLibHome.webp)  |  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/concepts/conceptLibGamepage.webp)  |
-|  **Store**  |  **Store gamepage**  |
-|  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/concepts/conceptStorePage.webp)  |  ![Preview](https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/concepts/conceptStoreGamepage.webp)  |
-</details>
+For the complete Windows 11 acrylic setup, download the **millennium-stuff ZIP** from the [bundle release](https://github.com/DavidHiFi/millennium-stuff/releases/latest). Extract it, exit Steam completely, and run PowerShell in the extracted folder:
 
-## Installation
-1. Download [Millennium](https://docs.steambrew.app/users/getting-started/installation) and follow the provided instructions to install the patcher.
-1. Open the [Theme Page](https://steambrew.app/theme?id=zQndv1rI0FXLh3QTRgOL) and click the Copy Theme ID button.
-1. Navigate to the Theme tab in the Millennium settings and select "Install Theme" and paste the Theme ID.
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Apply -Configure
+```
 
-**Voilà! Enjoy the new look of your Steam!**
+Start Steam. The installer enables Mocha Steam and the bundled Window Styler plugin, backs up replaced files, and preserves existing options and other plugins. Add `-SteamPath 'D:\Steam'` for a custom Steam location.
 
-## Info
-- Some things only work properly when steam is maximized on a 1920x1080p (or higher) monitor.
-  - Smaller monitors may be properly supported later
+For a theme-only install, download [the repository ZIP](https://github.com/DavidHiFi/MochaSteam/archive/refs/heads/main.zip). Exit Steam, extract the folder containing `skin.json` to `Steam\millennium\themes\MochaSteam`, start Steam and select **Mocha Steam** in Millennium's Themes tab.
 
-## Fully supported plugins
-- [HLTB for Steam](https://steambrew.app/plugin?id=f685622bace6)
-- [Size on Disk](https://steambrew.app/plugin?id=e73371b61eef)
+The theme-only download does not install a plugin. Native acrylic behind separate Steam windows requires Windows 11 and the patched **DWMX / Window Styler** plugin from the bundle. Enable **Mica & Acrylic plugin support** when that plugin is installed. The theme works as an ordinary dark theme without it. Select a font installed on your machine.
 
-## Roadmap
-My deadline is 1 April 2027, i planned to finish this theme until then. When i don't make it this theme will be paused and i work again on the Discord theme and other themes.
-<details>
-  <summary>Store</summary>
-  
-  - [ ] Home
-  - [ ] (WIP) Navbar
-  - [ ] Discovery
-  - [ ] (WIP) Pointshop
-  - [ ] Charts
-  - [ ] (WIP) Gamepage
-  - [ ] Bundle info
-  - [ ] Hardware page
-  - [ ] The Steam Awards page
-  - [ ] Steam Replay page
-  - [ ] Steam Labs page
-  - [ ] Tags page
-  - [ ] Community recommends page
-  - [ ] Interactive recommender page
-  - [ ] Among friends page
-  - [ ] Steam curators page
-  - [ ] Gift cards page
-  - [x] Cart
-  - [ ] Wishlist rework
-  - [ ] (WIP) Checkout
-  - [ ] Categories page
-  - [ ] Personal calendar
-  - [x] Search result list page
-  - [ ] Settings
-</details>
-<details>
-  <summary>Library</summary>
+## Customization
 
-  - [ ] (WIP) Collection page
-  - [ ] Gamepage rework
-</details>
-<details>
-  <summary>Community</summary>
+Options include sidebar behavior, fonts, window controls, gift-card visibility and favorite-friend status backgrounds. Native popup acrylic is applied on display events, without polling. Library icons and status indicators share one alignment slot. SpaceTheme changes are integrated through `ce67165`.
 
-  - [ ] Home
-  - [ ] Gamepage
-    - [ ] Screenshots
-    - [ ] Artworks
-    - [ ] Guides
-    - [ ] News
-    - [ ] Reviews
-    - [ ] Videos
-    - [ ] Workshop
-      - [ ] Item page
-  - [ ] Discussions
-  - [ ] Workshop
-  - [ ] Market
-    - [ ] Home
-    - [ ] Item page
-  - [ ] Broadcast
-</details>
-<details>
-  <summary>User</summary>
+Steam updates can change selectors and popup behavior. Report problems in [GitHub issues](https://github.com/DavidHiFi/MochaSteam/issues) with your Steam, Millennium and Windows versions.
 
-  - [ ] Profile
-  - [ ] Activity
-  - [ ] Friends
-  - [ ] Content (User's screenshots/artworks/videos/...)
-  - [x] Awards 
-  - [ ] (WIP) Badges
-  - [ ] Inventory
-  - [ ] Booster Pack Creator
-</details>
-<details>
-  <summary>Friends & Chat</summary>
+## Credits
 
-  - [x] Compact mode support
-  - [ ] Chat
-  - [ ] Group chat
-</details>
-<details>
-  <summary>Big Picture Mode</summary>
-
-  - [ ] Home
-  - [ ] Sidebar
-  - [ ] Gamepage
-  - [ ] Library
-  - [ ] Store
-  - [ ] Friends & Chat
-  - [ ] Media
-  - [ ] Downloads
-  - [ ] Settings
-</details>
-<details>
-  <summary>Overlay</summary>
-  
-  - [ ] Game Overview
-  - [ ] Achievements
-  - [ ] Notes
-  - [ ] Clock
-  - [ ] Guides
-  - [ ] Discussions
-  - [ ] Recordings & Screenshots
-  - [ ] Browser
-  - [ ] Controller Settings
-</details>
-<details>
-  <summary>Other</summary>
-
-  - [ ] (WIP) Notifications
-  - [ ] (WIP) Steam Settings
-    - [x] Account
-    - [x] Family
-    - [ ] Notifications
-    - [ ] Library
-    - [ ] Download
-    - [ ] Storage
-    - [ ] In Game
-    - [ ] Compatibility
-    - [ ] Accessibility
-    - [ ] Controller
-    - [ ] Game Recording
-    - [ ] Voice
-    - [ ] Remote Play
-    - [ ] Music
-  - [ ] (WIP) Inputs
-    - [ ] (WIP) Button
-    - [ ] Dropdown
-    - [ ] Search
-    - [ ] (WIP) Color
-    - [x] Emoji picker
-    - [ ] Checkbox
-      - [x] Checkbox Switch
-    - [ ] (WIP) Radio
-    - [x] Radiogroup
-    - [ ] (WIP) Range
-  - [ ] Recordings & Screenshots
-  - [x] Special Offers
-  - [ ] Game server window
-  - [ ] Players window
-  - [ ] Add non-steam game window
-  - [x] About Steam window
-</details>
+SpaceTheme by SpaceEnergy supplies the MIT-licensed base. The Catppuccin palette is MIT licensed. DavidHiFi maintains this fork and its theme changes. Original attribution is retained in `LICENSE` and `NOTICE.md`. The separate DWMX plugin is Apache-2.0 licensed and retains its own license in the bundle.

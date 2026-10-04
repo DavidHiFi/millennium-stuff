@@ -9,8 +9,8 @@
 /*
 ! Base
 */
-html.client_chat_frame body,
-html.web_chat_frame body,
+html.client_chat_frame body:not(.ContextMenuPopupBody),
+html.web_chat_frame body:not(.ContextMenuPopupBody),
 .ModalPosition_Content {
     border-radius: var(--st-border-radius);
     background-color: rgb(var(--st-background)) !important;

@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/SpaceTheme/Steam",
+  "originalBase": "ed560f2bd9aae88f1194b9b12e170231cff84640",
+  "lastIntegrated": "ce67165b14dc933bc21f84a51d87f9e020a1ba8d",
+  "integratedOn": "2026-10-04",
+  "adaptations": [
+    "Dropdown menu uses Mocha glass tint, backdrop filter and thin edge",
+    "Native context-menu canvas stays transparent outside the rounded card"
+  ]
+}

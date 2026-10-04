@@ -809,3 +809,14 @@ body:has(._3x1HklzyDs4TEjACrRO2tB):has(._3E5iVG630BkOHTaJJaMEMw) ._1_yS5UP7el0aN
     flex: 0 0 8px;
     border-radius: 50%;
 }
+
+/* ProtonDB uses different dot margins when Steam shows a status icon.
+   Keep its slot at the tool-row spacing, including blank indicators. */
+._3x1HklzyDs4TEjACrRO2tB ._2-O4ZG0KrnSrzISHBKctFQ ._1vO6BoiVslZgs1kqDGdUs8::before {
+    content: "";
+    flex: 0 0 6px;
+    width: 6px;
+    height: 6px;
+    margin-left: 0 !important;
+    margin-right: 3px !important;
+}

@@ -18,6 +18,10 @@ Provenance of the snapshots these forks are based on:
   Mocha Steam has no `metadata.json`, so Millennium treats it as a local theme and
   does not offer to update it back to the upstream store build. A SpaceTheme install
   is untouched by this repo's `install.ps1`.
+  Updates through `ce67165b14dc933bc21f84a51d87f9e020a1ba8d` were integrated on
+  2026-10-04. This includes SpaceEnergy's Store and friend-status changes,
+  ForgottenHero's hover-sidebar fix and EldinBegano's dropdown styling.
+  Mocha keeps its own palette, acrylic fills and popup corner corrections.
 - DWMX, commit `28c1a17f533d0ae5e98745616e859548912898e0`, built with
   `pnpm install && pnpm build` (`@steambrew/ttc`).
 

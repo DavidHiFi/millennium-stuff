@@ -3,6 +3,14 @@ body.DesktopUI {
     background: unset !important;
 }
 
+/* The menu card owns its fill. A body background propagates to the entire
+   popup canvas and paints square pixels outside the card's rounded corners. */
+html.ContextMenuPopup,
+html.ContextMenuPopup body.ContextMenuPopupBody {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
 body.DesktopUI .PP7LM0Ow1K5qkR8WElLpt {
     min-width: unset !important;
     max-height: 90%;
@@ -13,7 +21,8 @@ body.DesktopUI .PP7LM0Ow1K5qkR8WElLpt {
     background-color: var(--st-glass, rgba(24, 24, 37, 0.72));
     -webkit-backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35));
     backdrop-filter: var(--st-glass-blur, blur(20px) saturate(1.35));
-    box-shadow: 0 10px 32px rgba(0, 0, 0, 0.55);
+    box-shadow: inset 0 0 0 1px rgba(88, 91, 112, 0.25);
+    overflow: hidden;
 }
 
 body.DesktopUI :has(._1bGewp3tfzqAF6fVTFFUOz:not([style="display: none;"])) .PP7LM0Ow1K5qkR8WElLpt {

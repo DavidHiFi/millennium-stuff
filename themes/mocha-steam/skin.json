@@ -4,11 +4,11 @@
     "author": "DavidHiFi",
     "github": {
         "owner": "DavidHiFi",
-        "repo_name": "millennium-stuff"
+        "repo_name": "MochaSteam"
     },
     "tags": [ "WIP", "Modular", "Dark", "Customizable", "Catppuccin Mocha" ],
-    "header_image": "https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/banner.webp",
-    "splash_image": "https://raw.githubusercontent.com/SpaceTheme/Steam/main/.github/assets/preview/preview.webp",
+    "header_image": "https://raw.githubusercontent.com/DavidHiFi/MochaSteam/main/.github/assets/preview.png",
+    "splash_image": "https://raw.githubusercontent.com/DavidHiFi/MochaSteam/main/.github/assets/preview.png",
     "Conditions": {
         "Window Controls": {
             "description": "Hide the Window Controls (Minimize, Maximize, Close) from the titlebar",
@@ -338,6 +338,18 @@
                 }
             }
         },
+        "Send a Gift Card button": {
+            "description": "Hide the Send a Gift Card button",
+            "default": "no",
+            "tab": "Store",
+            "section": "Home",
+            "values": {
+                "no": {},
+                "yes": {
+                    "TargetCss": { "affects": ["https://.*\\.steampowered\\.com(/.*)?"], "src": "options/store/home/giftCardButton.css" }
+                }
+            }
+        },
 
         "Broadcast": {
             "description": "Hide broadcasts on the store gamepage",
@@ -642,6 +654,18 @@
         },
 
 
+        "Favorite friends status background": {
+            "description": "When the \"Compact favorite friends area\" is on then the cards will show a status background so you know if the user is online/offline/ingame",
+            "default": "yes",
+            "tab": "Friends & Chat",
+            "section": "Firends list",
+            "values": {
+                "no": {},
+                "yes": {
+                    "TargetCss": { "affects": [".friendsui-container"], "src": "options/friendsAndChat/list/compactFavFriendsStatusBackground.css" }
+                }
+            }
+        },
         "Hide group chat": {
             "description": "Hides the group chat section in the friends list",
             "default": "no",

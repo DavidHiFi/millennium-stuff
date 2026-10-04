@@ -1,79 +1,41 @@
-# Millennium Stuff
+# Mocha Steam for Millennium
 
-My [Millennium](https://steambrew.app) setup for the Steam client: the theme I actually
-run, the acrylic plugin it needs, and the config that ties them together.
+Catppuccin Mocha styling for Steam, with rounded controls, frosted menus and native Windows acrylic. By DavidHiFi, forked from [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) by SpaceEnergy.
 
-## Download
+## Install the complete Windows setup
 
-- Packaged zip of everything (theme, plugin, installer, docs):
-  [latest release](https://github.com/DavidHiFi/millennium-stuff/releases/latest)
-- Or just the theme folder:
-  [themes/mocha-steam](https://github.com/DavidHiFi/millennium-stuff/tree/main/themes/mocha-steam)
-- Or clone it: `git clone https://github.com/DavidHiFi/millennium-stuff`
-
-## What's in here
-
-| Path | What it is |
-| --- | --- |
-| `themes/mocha-steam/` | **Mocha Steam** - my own Catppuccin Mocha theme for Millennium, built as a fork of [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) |
-| `plugins/dwmx/` | [DWMX (Window Styler)](https://github.com/ejalxndr/dwmx) built and patched so the acrylic backdrop actually works on current Windows 11 |
-| `plugins/dwmx-src/` | The patched DWMX source files (`backend/main.lua`, `frontend/index.tsx`) plus the theme CSS that goes with it |
-| `configs/millennium-config.example.json` | Millennium config showing the theme options and enabled plugins I use |
-| `docs/` | What changed and why, per project |
-| `install.ps1` | Audit/apply installer (`-Audit` by default, `-Apply` to install) |
-
-## Quick start
+1. Install [Millennium](https://docs.steambrew.app/users/getting-started/installation).
+2. Download the **millennium-stuff ZIP** from the [latest release](https://github.com/DavidHiFi/millennium-stuff/releases/latest) and extract it.
+3. Exit Steam completely. Open PowerShell in the extracted folder and run:
 
 ```powershell
-# look first, changes nothing
-pwsh -File .\install.ps1
-
-# install theme + plugin (backs up anything it replaces)
-pwsh -File .\install.ps1 -Apply
-
-# also point Millennium at Mocha Steam and set its options (Steam must be closed)
-pwsh -File .\install.ps1 -Apply -Configure
+powershell -NoProfile -ExecutionPolicy Bypass -File .\install.ps1 -Apply -Configure
 ```
 
-Then in Millennium, **Themes**: enable **Mocha Steam**. Its options live under
-General / Other: `Font` and `Mica & Acrylic plugin support`.
+4. Start Steam. Mocha Steam and the bundled Window Styler plugin are enabled.
 
-`install.ps1` installs the theme to `millennium\themes\MochaSteam` and the plugin to
-`millennium\plugins\dwmx`. It never touches a SpaceTheme install - that stays a
-separate, stock theme.
+The installer backs up replaced files in `Steam\millennium\_backups`, preserves existing options and other plugins, and supports a clean Millennium setup. Add `-SteamPath 'D:\Steam'` for a custom Steam location.
 
-## Mocha Steam
+For a read-only check, run `powershell -File .\install.ps1 -Audit`. To install files without changing the active theme, use `-Apply` without `-Configure`, then select Mocha Steam and enable Window Styler in Millennium.
 
-My theme, author DavidHiFi, forked from SpaceTheme by SpaceEnergy (MIT, credited in
-`NOTICE.md`). Changes, all in `themes/mocha-steam`:
+Native acrylic requires Windows 11 and the bundled DWMX plugin. Enable **Mica & Acrylic plugin support** in the theme options when using it. The theme also works as an ordinary dark theme without native acrylic. Fonts must be installed separately.
 
-- The "Space"/"Theme" text next to the Steam logo is gone from the theme itself.
-- `FiraCode Nerd Font` added to the font dropdown.
-- Catppuccin Mocha palette with Blue/Lavender accents.
-- Chrome (bottom bar, titlebar controls, modal dialogs) is one solid Mocha surface
-  instead of stacked translucent sub-panels.
-- Inner containers no longer stack alpha layers over the window tint, which is what
-  made the library darker than the sidebar (a hard edge) and killed the blur.
-- The sidebar is one continuous panel at the width you set on every page (console,
-  store, community included), with the downloads chip aligned to the account chip,
-  and the console page is themed to match.
-- Menus, dropdowns and notifications are frosted glass (`backdrop-filter`), and the
-  overlay's experimental-warning box is gone.
+## Theme-only installation
 
-Full detail: `docs/mocha-steam.md`.
+The [MochaSteam repository](https://github.com/DavidHiFi/MochaSteam) has `skin.json` at its root for Millennium's theme installer. It contains the same theme files as this bundle and explains manual installation.
 
-## DWMX acrylic plugin
+## Included changes
 
-Upstream DWMX sets a window blur that no longer renders on Windows 11 25H2, and its
-Lua backend never found Steam's windows at all (32-bit `ULONG_PTR` against Millennium's
-64-bit Lua VM). `plugins/dwmx` is the fixed build; `plugins/dwmx-src` is the source of
-those fixes.
+- Catppuccin Mocha palette, Blue/Lavender accents and rounded controls.
+- Frosted menus, tooltips, dropdowns and dialogs, with transparent popup shells that preserve rounded corners.
+- Native acrylic applied when Steam displays pre-created popups, without polling or repeatedly refreshing the main window.
+- Aligned library icons and ProtonDB indicators.
+- SpaceTheme updates through `ce67165`, including hover-sidebar retention, dropdown rounding, gift-card visibility and favorite-friend status options.
 
-Full detail: `docs/dwmx-acrylic-plugin.md`.
+The native menu blur was verified with paired high-contrast captures. Steam updates can change selectors or popup behavior; the tests do not guarantee every future client state.
 
-## Credits and licenses
+## Contents and credits
 
-- Theme base: [SpaceTheme for Steam](https://github.com/SpaceTheme/Steam) by SpaceEnergy, MIT.
-- Plugin: [DWMX](https://github.com/ejalxndr/dwmx) by ejalxndr, Apache-2.0.
-- Palette: [Catppuccin](https://github.com/catppuccin/catppuccin), MIT.
-- My changes: MIT, see `LICENSE` and `NOTICE.md`.
+`themes/mocha-steam` contains the theme, `plugins/dwmx` the built plugin, `plugins/dwmx-src` its patched source, `install.ps1` the installer, and `docs` the implementation notes. `configs/mocha-steam-upstream.json` records upstream integration.
+
+SpaceTheme by SpaceEnergy is MIT licensed. DWMX by ejalxndr is Apache-2.0 licensed. Catppuccin is MIT licensed. Original licenses and attribution are preserved. DavidHiFi's theme changes are MIT licensed. See `LICENSE` and `NOTICE.md`.

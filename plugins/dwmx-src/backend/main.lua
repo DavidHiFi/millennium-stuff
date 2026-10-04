@@ -45,6 +45,11 @@ static const int TH32CS_SNAPPROCESS = 0x00000002;
 typedef int (__stdcall *WNDENUMPROC)(HWND, LPARAM);
 BOOL EnumWindows(WNDENUMPROC lpEnumFunc, LPARAM lParam);
 BOOL IsZoomed(HWND hWnd);
+BOOL IsWindow(HWND hWnd);
+BOOL IsWindowVisible(HWND hWnd);
+LONG_PTR GetWindowLongPtrW(HWND hWnd, int nIndex);
+LONG_PTR SetWindowLongPtrW(HWND hWnd, int nIndex, LONG_PTR dwNewLong);
+int GetClassNameW(HWND hWnd, WCHAR* lpClassName, int nMaxCount);
 DWORD GetWindowThreadProcessId(HWND hWnd, DWORD* lpdwProcessId);
 int WideCharToMultiByte(UINT CodePage, DWORD dwFlags, const WCHAR *lpWideCharStr, int cchWideChar, char *lpMultiByteStr, int cbMultiByte, const char *lpDefaultChar, int *lpUsedDefaultChar);
 HRESULT DwmSetWindowAttribute(HWND hwnd, DWORD dwAttribute, void* pvAttribute, DWORD cbAttribute);
@@ -94,6 +99,8 @@ local current_target_pids = {}
 
 -- Single reusable callback - created once and reused
 local window_enum_callback = nil
+local patched_windows = {}
+local patch_stats = { applied = 0, unchanged = 0, deferred = 0, failed = 0 }
 
 -- cast wchar to utf8 string. 
 -- 260 == MAX_PATH, we assume steam is not running from a path longer than that.
@@ -170,15 +177,76 @@ local function EnableRoundedCorners(hwnd)
 end
 
 local function EnableWindowBackdrop(hwnd)
-    -- Windows 11 system backdrop: real acrylic blur behind the window.
-    -- (The legacy SetWindowCompositionAttribute accent is a no-op on current
-    -- Windows 11 builds, so it is only kept as a fallback.)
+    -- API success alone does not prove this fallback renders on Steam's CEF.
     local bt = ffi.new("int[1]", DWMSBT_TRANSIENTWINDOW)
     local hr = dwmapi.DwmSetWindowAttribute(hwnd, DWMWA_SYSTEMBACKDROP_TYPE, bt, ffi.sizeof(bt))
     return hr == 0
 end
 
 local function PatchWindowContext(hwnd)
+    -- Steam pre-creates its popup and supernav windows while hidden and
+    -- reuses them on hover, without ever calling window.open. Those windows
+    -- must be patched too, or they render the theme's translucent surfaces
+    -- straight onto the sharp desktop. Patch SDL_app windows regardless of
+    -- visibility, then promote each one the first time it is seen visible.
+    local class_name = ffi.new("WCHAR[260]")
+    C.GetClassNameW(hwnd, class_name, 260)
+    if wchar_to_utf8(class_name) ~= "SDL_app" then return end
+    local was_visible = C.IsWindowVisible(hwnd) ~= 0
+    local pid = ffi.new("DWORD[1]")
+    C.GetWindowThreadProcessId(hwnd, pid)
+    local key = tostring(hwnd)
+    local zoomed = C.IsZoomed(hwnd) ~= 0
+    local previous = patched_windows[key]
+    local exstyle = tonumber(user32.GetWindowLongPtrW(hwnd, -20))
+    local bit = require("bit")
+    -- Steam's Composited creation flag adds legacy bottom-to-top GDI double
+    -- buffering. CEF already uses GPU composition. Keep transparent-parent
+    -- support, but remove the second buffering path before applying acrylic.
+    local has_composited = bit.band(exstyle, 0x02000000) ~= 0
+    if previous and previous.pid == tonumber(pid[0]) and not has_composited then
+        if previous.zoomed ~= zoomed then
+            EnableRoundedCorners(hwnd)
+            previous.zoomed = zoomed
+        end
+        if was_visible and not previous.seen_visible then
+            -- Accents set before DWM ever composited the window can be
+            -- dropped. Re-apply once at first show, with the frame refresh,
+            -- so a reused popup never appears without its blur.
+            previous.promote_attempts = (previous.promote_attempts or 0) + 1
+            local ok = EnableBlurBehind(hwnd)
+            local SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED = 0x37
+            if user32.SetWindowPos(hwnd, nil, 0, 0, 0, 0, SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED) == 0 then
+                logger:error("SetWindowPos promote refresh failed")
+                patch_stats.failed = patch_stats.failed + 1
+                return
+            end
+            if ok then
+                previous.seen_visible = true
+                patch_stats.applied = patch_stats.applied + 1
+                logger:info("Promoted acrylic on first show of " .. key)
+            else
+                -- Bounded retries: a permanent failure must not turn the
+                -- show callbacks into a frame-refresh storm.
+                patch_stats.failed = patch_stats.failed + 1
+                if previous.promote_attempts >= 5 then
+                    previous.seen_visible = true
+                    logger:error("Acrylic promote failed five times for " .. key)
+                end
+            end
+            return
+        end
+        patch_stats.unchanged = patch_stats.unchanged + 1
+        return
+    end
+    if has_composited then
+        user32.SetWindowLongPtrW(hwnd, -20, bit.band(exstyle, bit.bnot(0x02000000)))
+        if bit.band(tonumber(user32.GetWindowLongPtrW(hwnd, -20)), 0x02000000) ~= 0 then
+            patch_stats.failed = patch_stats.failed + 1
+            logger:error("Could not remove WS_EX_COMPOSITED")
+            return
+        end
+    end
     if IS_CORNER_PREFERENCE_COMPATIBLE then
         local ok = EnableRoundedCorners(hwnd)
         if not ok then logger:error("EnableRoundedCorners failed") end
@@ -198,8 +266,17 @@ local function PatchWindowContext(hwnd)
     -- restart" bug. SWP_FRAMECHANGED forces the refresh without moving,
     -- resizing, restacking or focusing the window.
     local SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED = 0x37
-    if not user32.SetWindowPos(hwnd, nil, 0, 0, 0, 0, SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED) then
+    if user32.SetWindowPos(hwnd, nil, 0, 0, 0, 0, SWP_NOSIZE_NOMOVE_NOZORDER_NOACTIVATE_FRAMECHANGED) == 0 then
         logger:error("SetWindowPos frame refresh failed")
+        patch_stats.failed = patch_stats.failed + 1
+        return
+    end
+    if ok then
+        patched_windows[key] = { hwnd = hwnd, pid = tonumber(pid[0]), zoomed = zoomed, seen_visible = was_visible }
+        patch_stats.applied = patch_stats.applied + 1
+        logger:info("Applied acrylic once to " .. key)
+    else
+        patch_stats.failed = patch_stats.failed + 1
     end
 end
 
@@ -224,6 +301,13 @@ local function init_window_enum_callback()
 end
 
 function PatchAllWindows()
+    for key, state in pairs(patched_windows) do
+        local pid = ffi.new("DWORD[1]")
+        C.GetWindowThreadProcessId(state.hwnd, pid)
+        if C.IsWindow(state.hwnd) == 0 or tonumber(pid[0]) ~= state.pid then
+            patched_windows[key] = nil
+        end
+    end
     init_window_enum_callback() 
     local targets = find_pids_by_name("steamwebhelper.exe")
     if #targets == 0 then
@@ -241,6 +325,11 @@ function PatchAllWindows()
     return true
 end
 
+function GetPatchStats()
+    return string.format('applied=%d unchanged=%d deferred=%d failed=%d',
+        patch_stats.applied, patch_stats.unchanged, patch_stats.deferred, patch_stats.failed)
+end
+
 local function on_load()
     logger:info("dwmx loaded with Millennium version " .. millennium.version())
     millennium.ready()
@@ -253,10 +342,12 @@ local function on_unload()
     -- Clean up callback if needed (though FFI callbacks are GC'd automatically)
     window_enum_callback = nil
     current_target_pids = {}
+    patched_windows = {}
 end
 
 local function on_frontend_loaded()
     logger:info("Frontend loaded")
+    PatchAllWindows()
 end
 
 return {

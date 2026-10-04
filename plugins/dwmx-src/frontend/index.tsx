@@ -3,6 +3,37 @@ import { callable, ConfirmModal, pluginSelf, showModal } from '@steambrew/client
 type OriginalOpenFunction = (url?: string, target?: string, features?: string, replace?: boolean) => Window | null;
 const originalOpen: OriginalOpenFunction = window.open;
 
+// Native popup windows cannot use CSS backdrop-filter to sample another
+// window. Apply the native material when Steam shows a pre-created popup.
+const watchedWindows = new WeakSet<Window>();
+let pendingPatch: ReturnType<typeof setTimeout> | undefined;
+function patchAfterShow() {
+	if (pendingPatch !== undefined) return;
+	pendingPatch = setTimeout(() => {
+		pendingPatch = undefined;
+		callable<[]>('PatchAllWindows')();
+		setTimeout(() => { callable<[]>('PatchAllWindows')(); }, 100);
+	}, 0);
+}
+function watchWindow(popup: Window | null | undefined) {
+	if (!popup || watchedWindows.has(popup)) return;
+	watchedWindows.add(popup);
+	const nativeWindow = (popup as any).SteamClient?.Window;
+	for (const method of ['ShowWindow', 'BringToFront']) {
+		const original = nativeWindow?.[method];
+		if (typeof original !== 'function') continue;
+		nativeWindow[method] = function (...args: unknown[]) {
+			const result = original.apply(this, args);
+			patchAfterShow();
+			return result;
+		};
+	}
+	popup.document.addEventListener('visibilitychange', () => {
+		if (!popup.document.hidden) patchAfterShow();
+	});
+	popup.addEventListener('focus', patchAfterShow);
+}
+
 const Patches = {
 	TARGET_WINDOW_FLAG: [4114, 2],
 	// Resizable | Composited | TransparentParentWindow: keeps windows
@@ -32,6 +63,7 @@ window.open = function (url?: string, target?: string, features?: string, replac
 	// times after opening: this is what gives context menus and popups the
 	// window backdrop too, not just windows that already existed.
 	const opened = originalOpen(url, target, features, replace);
+	watchWindow(opened);
 	for (const delay of [0, 100, 300, 800]) {
 		setTimeout(() => { callable<[]>('PatchAllWindows')(); }, delay);
 	}
@@ -48,5 +80,14 @@ export default async function PluginMain() {
 	// a few times shortly after load so the main window keeps its backdrop.
 	for (const delay of [500, 1500, 3000, 6000, 10000]) {
 		setTimeout(() => { callable<[]>('PatchAllWindows')(); }, delay);
+	}
+
+	const manager = (window as any).g_PopupManager;
+	if (manager) {
+		for (const popup of manager.GetPopups()) watchWindow(popup.m_popup);
+		manager.AddPopupCreatedCallback((popup: any) => {
+			watchWindow(popup.m_popup);
+			patchAfterShow();
+		});
 	}
 }

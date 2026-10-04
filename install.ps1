@@ -18,6 +18,7 @@
 param(
     [string]$SteamPath = 'C:\Program Files (x86)\Steam',
     [switch]$Apply,
+    [switch]$Audit,
     [switch]$Configure
 )
 
@@ -30,7 +31,13 @@ $pluginDst = Join-Path $SteamPath 'millennium\plugins\dwmx'
 $backupRoot = Join-Path $SteamPath 'millennium\_backups'
 $configPath = Join-Path $SteamPath 'millennium\config\config.json'
 $themeId = 'MochaSteam'
-$stamp = Get-Date -Format 'yyyyMMdd-HHmmss'
+$stamp = (Get-Date -Format 'yyyyMMdd-HHmmss-fff') + '-' + [guid]::NewGuid().ToString('N').Substring(0,8)
+if ($Audit -and $Apply) { throw 'Choose -Audit or -Apply, not both.' }
+
+function Copy-Tree([string]$from, [string]$to) {
+    robocopy $from $to /E /NFL /NDL /NJH /NJS /NP | Out-Null
+    if ($LASTEXITCODE -ge 8) { throw "Copy failed: $from -> $to, robocopy exit $LASTEXITCODE" }
+}
 
 function Step([string]$text) { Write-Host "==> $text" }
 
@@ -55,13 +62,45 @@ if (-not $Apply) {
     exit 0
 }
 
+# Validate before backups or replacing any files.
+if ($steamRunning) { throw 'Exit Steam completely before installing. No files were changed.' }
+if (-not (Test-Path -LiteralPath (Join-Path $SteamPath 'millennium'))) {
+    throw 'Install Millennium first. This installer does not install Millennium itself.'
+}
+$steamRoot = [IO.Path]::GetFullPath($SteamPath).TrimEnd('\') + '\'
+foreach ($dst in @($themeDst, $pluginDst)) {
+    if (-not [IO.Path]::GetFullPath($dst).StartsWith($steamRoot, [StringComparison]::OrdinalIgnoreCase)) {
+        throw "Destination is outside Steam: $dst"
+    }
+}
+if ($Configure) {
+    $skin = Get-Content -LiteralPath (Join-Path $themeSrc 'skin.json') -Raw | ConvertFrom-Json
+    $cfg = if (Test-Path -LiteralPath $configPath) { Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json } else { [pscustomobject]@{} }
+    if (-not $cfg.plugins) { $cfg | Add-Member -NotePropertyName plugins -NotePropertyValue ([pscustomobject]@{}) -Force }
+    if (-not $cfg.plugins.enabledPlugins) { $cfg.plugins | Add-Member -NotePropertyName enabledPlugins -NotePropertyValue @() -Force }
+    if ($cfg.plugins.enabledPlugins -notcontains 'dwmx') {
+        $cfg.plugins.enabledPlugins = @($cfg.plugins.enabledPlugins) + 'dwmx'
+    }
+    if (-not $cfg.themes) { $cfg | Add-Member -NotePropertyName themes -NotePropertyValue ([pscustomobject]@{}) -Force }
+    if (-not $cfg.themes.conditions) { $cfg.themes | Add-Member -NotePropertyName conditions -NotePropertyValue ([pscustomobject]@{}) -Force }
+    if (-not $cfg.themes.conditions.$themeId) { $cfg.themes.conditions | Add-Member -NotePropertyName $themeId -NotePropertyValue ([pscustomobject]@{}) -Force }
+    $opts = $cfg.themes.conditions.$themeId
+    foreach ($condition in $skin.Conditions.PSObject.Properties) {
+        if (-not $opts.PSObject.Properties[$condition.Name]) {
+            $value = if ($condition.Name -eq 'Mica & Acrylic plugin support') { 'yes' } else { $condition.Value.default }
+            $opts | Add-Member -NotePropertyName $condition.Name -NotePropertyValue $value
+        }
+    }
+    $cfg.themes | Add-Member -NotePropertyName activeTheme -NotePropertyValue $themeId -Force
+}
+
 # --- backups -------------------------------------------------------------
 $backup = Join-Path $backupRoot $stamp
 New-Item -ItemType Directory -Path $backup -Force | Out-Null
 foreach ($pair in @(@{ src = $themeDst; name = 'theme-MochaSteam' }, @{ src = $pluginDst; name = 'plugin-dwmx' })) {
     if (Test-Path -LiteralPath $pair.src) {
         Step "Backup $($pair.src) -> $(Join-Path $backup $pair.name)"
-        robocopy $pair.src (Join-Path $backup $pair.name) /E /NFL /NDL /NJH /NJS /NP | Out-Null
+        Copy-Tree $pair.src (Join-Path $backup $pair.name)
     }
 }
 if ($Configure -and (Test-Path -LiteralPath $configPath)) {
@@ -74,31 +113,14 @@ foreach ($dst in @($themeDst, $pluginDst)) {
     if (Test-Path -LiteralPath $dst) { Step "Removing old $(Split-Path $dst -Leaf)"; Remove-Item -LiteralPath $dst -Recurse -Force }
 }
 Step 'Copying theme'
-robocopy $themeSrc $themeDst /E /NFL /NDL /NJH /NJS /NP | Out-Null
+Copy-Tree $themeSrc $themeDst
 Step 'Copying plugin'
-robocopy $pluginSrc $pluginDst /E /NFL /NDL /NJH /NJS /NP | Out-Null
+Copy-Tree $pluginSrc $pluginDst
 
 # --- config --------------------------------------------------------------
 if ($Configure) {
-    if ($steamRunning) { throw 'Steam must be closed for -Configure (its config would be overwritten on exit).' }
     Step 'Updating Millennium config'
-    $cfg = Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json
-    if ($cfg.plugins.enabledPlugins -notcontains 'dwmx') {
-        $cfg.plugins.enabledPlugins = @($cfg.plugins.enabledPlugins) + 'dwmx'
-    }
-    $cfg.themes.activeTheme = $themeId
-    if (-not $cfg.themes.conditions.$themeId) {
-        $source = $cfg.themes.conditions.'Steam'
-        if (-not $source) { throw "No themes.conditions.Steam block to copy options from - open the SpaceTheme options once in Millennium, then rerun." }
-        $cfg.themes.conditions | Add-Member -NotePropertyName $themeId -NotePropertyValue $source -Force
-    }
-    if (-not $cfg.themes.themeColors.$themeId -and $cfg.themes.themeColors.'Steam') {
-        $cfg.themes.themeColors | Add-Member -NotePropertyName $themeId -NotePropertyValue $cfg.themes.themeColors.'Steam' -Force
-    }
-    $opts = $cfg.themes.conditions.$themeId
-    $opts | Add-Member -NotePropertyName 'Font' -NotePropertyValue 'FiraCode Nerd Font' -Force
-    $opts | Add-Member -NotePropertyName 'Mica & Acrylic plugin support' -NotePropertyValue 'yes' -Force
-    $opts | Add-Member -NotePropertyName 'Mica Transparency' -NotePropertyValue '55' -Force
+    New-Item -ItemType Directory -Path (Split-Path $configPath) -Force | Out-Null
     $cfg | ConvertTo-Json -Depth 100 | Set-Content -LiteralPath $configPath -Encoding UTF8
     Get-Content -LiteralPath $configPath -Raw | ConvertFrom-Json | Out-Null
     Step "config.json written and re-parsed OK (activeTheme = $themeId)"
@@ -107,6 +129,5 @@ if ($Configure) {
 Write-Host ''
 Write-Host 'Done. Restart Steam, then in Millennium check:'
 Write-Host '  Themes: Mocha Steam enabled (SpaceTheme left as its own separate theme)'
-Write-Host '  Themes > Mocha Steam > General > Font: FiraCode Nerd Font'
 Write-Host '  Themes > Mocha Steam > General > Mica & Acrylic plugin support: yes'
 Write-Host "Restore from: $backup"

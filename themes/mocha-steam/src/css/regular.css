@@ -39,6 +39,7 @@
 
 /* Tooltips */
 body .TextToolTip {
+    overflow: hidden;
     border-radius: var(--st-border-radius) !important;
     background-image: none !important;
     background-color: var(--st-glass) !important;
@@ -89,6 +90,8 @@ body [class~="ShowcaseHeader"] .DialogDropDown_Arrow {
 }
 
 body .DialogDropDownMenu {
+    overflow-x: hidden;
+    overflow-y: auto;
     border-radius: var(--st-border-radius) !important;
     background-color: var(--st-glass) !important;
     -webkit-backdrop-filter: var(--st-glass-blur) !important;
@@ -109,6 +112,7 @@ body ._2ohOQgahhMYnIEfAQmv9B8 {
 /* Hover popup over a game cover (playtime / screenshot card): it painted the
    cover art straight through at 55%, so it is a frosted panel now. */
 body ._2sGn0cBsD44TjnUIh-lx9d {
+    overflow: hidden;
     border-radius: var(--st-border-radius) !important;
     background-color: var(--st-glass) !important;
     -webkit-backdrop-filter: var(--st-glass-blur) !important;

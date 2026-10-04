@@ -1,5 +1,37 @@
 # DWMX acrylic plugin, patched
 
+## Current lifecycle, 2026-10-05
+
+The backend removes WS_EX_COMPOSITED from Steam SDL_app windows while
+keeping transparent-parent support and the native acrylic accent. It patches
+each HWND once, skips existing windows on popup callbacks, and discards destroyed
+handles. Maximization changes update corner preference separately. Steam's
+pre-created hidden menus receive the material too, then receive one frame refresh
+on their first visible display. The frontend watches native ShowWindow and
+BringToFront calls, document visibility and popup creation. It coalesces show
+callbacks and uses a bounded 100 ms retry. It does not poll or repeatedly refresh
+the main window.
+
+CSS backdrop-filter cannot sample content in another native window. Native
+acrylic supplies that backdrop for menus, tooltips and other separate windows;
+the existing CSS filters handle content within the same page. Transparent popup
+shells and rounded cards preserve the previous corner fix.
+
+On 2026-10-05, the real Community menu was placed over a high-contrast stripe
+probe. In a text-free interior region, channel contrast fell from 35.47 with
+acrylic disabled to 0.49 with it enabled. Red and blue probes changed the interior
+tint, confirming backdrop sampling. Twelve pre-created menus passed two show
+cycles each; the second display did not apply another accent. Idle counts stayed
+unchanged over 2.2 seconds. These checks establish rendered blur in the tested
+menu, not a guarantee about every future Steam version or rendering state.
+
+Live tests covered three fresh starts, five newly created popups, 100 repeated
+backend calls and ten minimize/restore cycles. A high-contrast stripe backdrop
+remained blurred after the transitions. The original intermittent artifact was
+absent from the baseline, so these tests do not prove a permanent cure for every
+session. The historical sections below describe earlier attempts and their
+limited observations.
+
 [DWMX (Window Styler)](https://github.com/ejalxndr/dwmx) gives Steam windows a
 Windows acrylic backdrop. Themes that support it (SpaceTheme, Fluenty) make their
 surfaces translucent so the blur shows through.
