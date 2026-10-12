@@ -26,3 +26,48 @@ Provenance of the snapshots these forks are based on:
   `pnpm install && pnpm build` (`@steambrew/ttc`).
 
 My changes to both are MIT, see `LICENSE`.
+
+## Plugins installed by the setup script
+
+`setup/Install-MochaSetup.ps1` reads `setup/manifest.json`. Upstream repositories and
+commits come from [SteamClientHomebrew/PluginDatabase](https://github.com/SteamClientHomebrew/PluginDatabase),
+which pins each approved plugin.
+
+- **Release**: the script downloads the built zip from the upstream release. The version is the release tag.
+- **Vendored**: `setup/vendor/` holds the built plugin copied from a working install, with
+  the upstream `LICENSE` added. The seven plugins are MIT licensed.
+- **Bundled**: DWMX is in `plugins/dwmx`, built from the patched source in `plugins/dwmx-src`.
+- **Manual**: the upstream repo publishes no license, so the repo does not redistribute the code.
+  The README lists the commit to install.
+- **Excluded**: `luatools-collection` is not shipped. It adds a collection for SteamTools Lua scripts.
+
+| Plugin | Upstream | Version | Source |
+| --- | --- | --- | --- |
+| achievement-groups | BossSloth/SteamHunter-plugin | 2.1.0 | Release |
+| dotastats | BambooFury/Dota-Stats | 2.0.0 | Release |
+| extendium | BossSloth/Extendium | 2.0.4 | Release |
+| global_launch_options | BlafKing/steam-global-launch-options | 1.1.0 | Release |
+| gratitude | BlythT/Gratitude-Millennium-Plugin | 1.1.5 | Release |
+| hltb-for-millennium | jcdoll/hltb-millennium-plugin | 2.1.0 | Release |
+| leetify-extension | TOR968/leetify-extension | 2.1.0 | Release |
+| non-steam-playtimes | k0d13/steam-non-steam-playtimes | 2.0.3 | Release |
+| playercount-badge | swindlesmccoop/playercount-badge | 1.0 | Release |
+| protondb | unicxrn/protondb-millennium | 1.0.0 | Release |
+| protondb-library-badges | Yohlo/protondb-library-badges | 1.0.1 | Release |
+| recent-chats | Alex979/Steam-Recent-Chats-plugin | 0.4.1 | Release |
+| RSS-feed-in-whats-new | diemonic1/RSS-feed-in-whats-new | 1.0.2 | Release |
+| size-on-disk | k0d13/steam-size-on-disk | 1.2.0 | Release |
+| steam-game-renamer | Inceptofn/Steam-GameRenamer-Plugin | 1.0.3 | Release |
+| steam-share | wopln/Steam-Share | 1.1.0 | Release |
+| sortium | SalvadorCorreia/Sortium | 1.0.1 | Vendored (MIT, Copyright 2026 SalvadorCorreia) |
+| steam-collections-plus | luthor112/steam-collections-plus | 3.1.2 | Vendored (MIT, Copyright 2025 luthor112) |
+| steam-easygrid | luthor112/steam-easygrid | 4.1.0 | Vendored (MIT, Copyright 2025 luthor112) |
+| steam-librarian | luthor112/steam-librarian | 3.0.0 | Vendored (MIT, Copyright 2025 luthor112) |
+| steam-taskbar-progress | luthor112/steam-taskbar-progress | 2.3.0 | Vendored (MIT, Copyright 2025 luthor112) |
+| veygax.valve-internal-enabler | veygax/valve-internal-enabler | 1.0.0 | Vendored (MIT, Copyright 2025 veygax) |
+| uwp-library-sync | xwxfox/millennium-uwp-library-sync | 0.0.1 | Vendored (MIT, Copyright 2025 Steam Client Homebrew) |
+| dwmx | shdwmtr/dwmx (patched) | see plugin.json | Bundled (Apache-2.0) |
+
+Four plugins have no license and are not redistributed: adamraichu.auto-accept-custom-launch-args,
+browser_history, easy-restart-reload-for-steam and steam-change-window-params. The README lists
+their commits.

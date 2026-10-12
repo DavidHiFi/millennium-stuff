@@ -1,0 +1,366 @@
+{
+  "schema": 1,
+  "description": "Plugins for the Mocha Steam setup. Each entry says where its files come from. Pinned upstream commits come from SteamClientHomebrew/PluginDatabase.",
+  "theme": {
+    "id": "MochaSteam",
+    "folder": "themes/mocha-steam",
+    "source": {
+      "type": "bundled"
+    }
+  },
+  "plugins": [
+    {
+      "folder": "RSS-feed-in-whats-new",
+      "id": "RSS-feed-in-whats-new",
+      "version": "1.0.2",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "diemonic1/RSS-feed-in-whats-new",
+        "tag": "v1.0.2",
+        "asset": "RSS-feed-in-whats-new-1-0-2.zip"
+      }
+    },
+    {
+      "folder": "achievement-groups",
+      "id": "achievement-groups",
+      "version": "2.1.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "BossSloth/SteamHunter-plugin",
+        "tag": "v2.1.0",
+        "asset": "Achievement-Groups-plugin-2.1.0.zip"
+      }
+    },
+    {
+      "folder": "adamraichu.auto-accept-custom-launch-args",
+      "id": "adamraichu.auto-accept-custom-launch-args",
+      "version": "1.2.4",
+      "enabled": true,
+      "source": {
+        "type": "manual",
+        "repo": "AdamRaichu/auto-accept-custom-launch-args",
+        "commit": "084d32b5947103aa36fec083db78b51fd80edd3b",
+        "note": "No license published"
+      }
+    },
+    {
+      "folder": "browser_history",
+      "id": "browser_history",
+      "version": "1.0.3",
+      "enabled": true,
+      "source": {
+        "type": "manual",
+        "repo": "ricewind012/steam-browser-history",
+        "commit": "8214f3641be641610e8237f9e14a21fdcbb4a735",
+        "note": "No license published"
+      }
+    },
+    {
+      "folder": "dotastats",
+      "id": "dotastats",
+      "version": "2.0.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "BambooFury/Dota-Stats",
+        "tag": "2.0.0",
+        "asset": "dotastats.v2.0.0.zip"
+      }
+    },
+    {
+      "folder": "dwmx",
+      "id": "dwmx",
+      "version": null,
+      "enabled": true,
+      "source": {
+        "type": "bundled",
+        "path": "plugins/dwmx",
+        "upstream": "shdwmtr/dwmx",
+        "license": "Apache-2.0"
+      }
+    },
+    {
+      "folder": "easy-restart-reload-for-steam",
+      "id": "easy-restart-reload-for-steam",
+      "version": "1.5.0",
+      "enabled": true,
+      "source": {
+        "type": "manual",
+        "repo": "SaiyajinK/Easy-Restart-Reload-for-Steam",
+        "commit": "dc79ae21c6a71af946fd71b5867eee1b179ea184",
+        "note": "No license published"
+      }
+    },
+    {
+      "folder": "extendium",
+      "id": "extendium",
+      "version": "2.0.4",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "BossSloth/Extendium",
+        "tag": "v2.0.4",
+        "asset": "extendium-2.0.4.zip"
+      }
+    },
+    {
+      "folder": "global_launch_options",
+      "id": "global_launch_options",
+      "version": "1.1.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "BlafKing/steam-global-launch-options",
+        "tag": "v1.1.0",
+        "asset": "steam-global-launch-options.zip"
+      }
+    },
+    {
+      "folder": "gratitude",
+      "id": "gratitude",
+      "version": "1.1.5",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "BlythT/Gratitude-Millennium-Plugin",
+        "tag": "v1.1.5",
+        "asset": "gratitude-for-millenium-v1.1.5.zip"
+      }
+    },
+    {
+      "folder": "hltb-for-millennium",
+      "id": "hltb-for-millennium",
+      "version": "2.1.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "jcdoll/hltb-millennium-plugin",
+        "tag": "v2.1.0",
+        "asset": "hltb-for-millennium-2.1.0.zip"
+      }
+    },
+    {
+      "folder": "leetify-extension",
+      "id": "leetify-extension",
+      "version": "2.1.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "TOR968/leetify-extension",
+        "tag": "v2.1.0",
+        "asset": "leetify-extension-v2.1.0.zip"
+      }
+    },
+    {
+      "folder": "luatools-collection",
+      "id": "luatools-collection",
+      "version": "0.0.2",
+      "enabled": false,
+      "source": {
+        "type": "excluded",
+        "reason": "Personal fork for SteamTools/LuaTools Lua unlock scripts. Not redistributed."
+      }
+    },
+    {
+      "folder": "non-steam-playtimes",
+      "id": "non-steam-playtimes",
+      "version": "2.0.3",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "k0d13/steam-non-steam-playtimes",
+        "tag": "v2.0.3",
+        "asset": "non-steam-playtimes-2.0.3.zip"
+      }
+    },
+    {
+      "folder": "playercount-badge",
+      "id": "playercount-badge",
+      "version": "1.0.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "swindlesmccoop/playercount-badge",
+        "tag": "v1.0",
+        "asset": "playercount-badge.zip"
+      }
+    },
+    {
+      "folder": "protondb",
+      "id": "protondb",
+      "version": "1.0.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "unicxrn/protondb-millennium",
+        "tag": "v1.0.0",
+        "asset": "protondb-v1.0.0.zip"
+      }
+    },
+    {
+      "folder": "protondb-library-badges",
+      "id": "protondb-library-badges",
+      "version": "1.0.1",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "Yohlo/protondb-library-badges",
+        "tag": "v1.0.1",
+        "asset": "protondb-library-badges-v1.0.1.zip"
+      }
+    },
+    {
+      "folder": "recent-chats",
+      "id": "recent-chats",
+      "version": "0.4.1",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "Alex979/Steam-Recent-Chats-plugin",
+        "tag": "v0.4.1",
+        "asset": "recent-chats-0.4.1.zip"
+      }
+    },
+    {
+      "folder": "size-on-disk",
+      "id": "size-on-disk",
+      "version": "1.2.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "k0d13/steam-size-on-disk",
+        "tag": "v1.2.0",
+        "asset": "size-on-disk-1.2.0.zip"
+      }
+    },
+    {
+      "folder": "sortium",
+      "id": "sortium",
+      "version": "1.0.1",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/sortium",
+        "repo": "SalvadorCorreia/Sortium",
+        "commit": "d6a286c51cdbb10765606d0e92fb35b3e14216fa",
+        "license": "MIT"
+      }
+    },
+    {
+      "folder": "steam-change-window-params",
+      "id": "steam-change-window-params",
+      "version": "1.0.2",
+      "enabled": true,
+      "source": {
+        "type": "manual",
+        "repo": "ricewind012/steam-change-window-params",
+        "commit": "ee57e92f9fe4f058082f8eb35b8ccbb2437cf4be",
+        "note": "No license published"
+      }
+    },
+    {
+      "folder": "steam-collections-plus",
+      "id": "steam-collections-plus",
+      "version": "3.1.2",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/steam-collections-plus",
+        "repo": "luthor112/steam-collections-plus",
+        "commit": "b5ab1f267a9a148f5c4c7a0e94263a6886c0af2a",
+        "license": "MIT"
+      }
+    },
+    {
+      "folder": "steam-easygrid",
+      "id": "steam-easygrid",
+      "version": "4.1.0",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/steam-easygrid",
+        "repo": "luthor112/steam-easygrid",
+        "commit": "3be3c47ec244d722393be79a6868c35688672c22",
+        "license": "MIT"
+      }
+    },
+    {
+      "folder": "steam-game-renamer",
+      "id": "steam-game-renamer",
+      "version": "1.0.3",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "Inceptofn/Steam-GameRenamer-Plugin",
+        "tag": "v1.0.3",
+        "asset": "GameRenamer-v1.0.3.zip"
+      }
+    },
+    {
+      "folder": "steam-librarian",
+      "id": "steam-librarian",
+      "version": "3.0.0",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/steam-librarian",
+        "repo": "luthor112/steam-librarian",
+        "commit": "c9e5974ad242a6ac0f4918eb0583877f6ea6431c",
+        "license": "MIT"
+      }
+    },
+    {
+      "folder": "steam-share",
+      "id": "steam-share",
+      "version": "1.1.0",
+      "enabled": true,
+      "source": {
+        "type": "release",
+        "repo": "wopln/Steam-Share",
+        "tag": "v1.1.0",
+        "asset": "Steam-Share-v1.1.0.zip"
+      }
+    },
+    {
+      "folder": "steam-taskbar-progress",
+      "id": "steam-taskbar-progress",
+      "version": "2.3.0",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/steam-taskbar-progress",
+        "repo": "luthor112/steam-taskbar-progress",
+        "commit": "56678fd10dba9826d34fcf8e6630fe1c099360e1",
+        "license": "MIT"
+      }
+    },
+    {
+      "folder": "uwp-library-sync",
+      "id": "__uwp_library_sync__",
+      "version": "0.0.1",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/uwp-library-sync",
+        "repo": "xwxfox/millennium-uwp-library-sync",
+        "commit": "d419ff8959a05af0602a1674de86ac6ed4cf0a03",
+        "license": "MIT"
+      }
+    },
+    {
+      "folder": "veygax.valve-internal-enabler",
+      "id": "veygax.valve-internal-enabler",
+      "version": "1.0.0",
+      "enabled": true,
+      "source": {
+        "type": "vendored",
+        "path": "setup/vendor/veygax.valve-internal-enabler",
+        "repo": "veygax/valve-internal-enabler",
+        "commit": "e83934d658283d1db32a06567b024dd876dd8f53",
+        "license": "MIT"
+      }
+    }
+  ]
+}
