@@ -2,17 +2,22 @@
     --st-option-alwaysShowDownloadbar: on;
 }
 
-/* 2026-10-12: the downloads chip and user panel are absolutely positioned
-   against the viewport while the sidebar column bottom sits 46px above it,
-   and the idle bar renders 44px tall (not the 49px active height reserved
-   below), leaving a 57px dead gap above Downloads. The -51px closes it to
-   the standard 6px stack gap (measured live via CDP). */
+/* The list ends 6px above Downloads. Margin = 16px card inset + 90px user panel
+   + 6px + Downloads height + 6px; the account alert adds 44px + 6px above the panel. */
 ._3x1HklzyDs4TEjACrRO2tB ._1ijTaXJJA5YWl_fW2IxcaT {
-    margin-bottom: calc(90px + 6px + 49px + 16px - 51px) !important;
+    margin-bottom: calc(90px + 6px + 44px + 6px + 16px) !important;
 }
 
-body.QsvsRVwbsApgKt1MhM0fz:has(._3E5iVG630BkOHTaJJaMEMw) ._3x1HklzyDs4TEjACrRO2tB ._1ijTaXJJA5YWl_fW2IxcaT {
-    margin-bottom: calc(90px + 6px + 49px + 44px + 16px + 6px - 51px) !important;
+body:has(._1_yS5UP7el0aN4vntx3dx .wi0pDywRgOCxhG7OqQNaA) ._3x1HklzyDs4TEjACrRO2tB ._1ijTaXJJA5YWl_fW2IxcaT {
+    margin-bottom: calc(90px + 6px + 49px + 6px + 16px) !important;
+}
+
+body:has(._3E5iVG630BkOHTaJJaMEMw) ._3x1HklzyDs4TEjACrRO2tB ._1ijTaXJJA5YWl_fW2IxcaT {
+    margin-bottom: calc(90px + 6px + 44px + 6px + 16px + 50px) !important;
+}
+
+body:has(._3E5iVG630BkOHTaJJaMEMw):has(._1_yS5UP7el0aN4vntx3dx .wi0pDywRgOCxhG7OqQNaA) ._3x1HklzyDs4TEjACrRO2tB ._1ijTaXJJA5YWl_fW2IxcaT {
+    margin-bottom: calc(90px + 6px + 49px + 6px + 16px + 50px) !important;
 }
 
 
