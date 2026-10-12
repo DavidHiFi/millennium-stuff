@@ -828,16 +828,13 @@ body:has(._3x1HklzyDs4TEjACrRO2tB):has(._3E5iVG630BkOHTaJJaMEMw) ._1_yS5UP7el0aN
 }
 
 /*
-& Library bottom edge: the sidebar card and the library page end on the content
-& frame line (window bottom - 16px), and the bottom stack sits 16px inside the
-& card: user panel, then Downloads 6px above it, then the list 6px above that.
+& The content frame cannot be scrolled by code. It had been scrolled 30px, which
+& pushed the library up under the 46px Steam top bar. overflow: clip stops that.
+& The bottom stack sits 16px inside the sidebar card: user panel, Downloads 6px
+& above it, and the list 6px above that (list margins in alwaysShowDownloadbar.css).
 */
-._3x1HklzyDs4TEjACrRO2tB {
-    height: calc(100% + 30px) !important;
-}
-._2Dd4T78PcCTUVgOtDGFY5j {
-    height: calc(100% + 30px) !important;
-    flex-shrink: 0 !important;
+._1rDh5rXSFZJOqCa4UpnI4z {
+    overflow: clip !important;
 }
 ._3cykd-VfN_xBxf3Qxriccm {
     bottom: 32px !important;
