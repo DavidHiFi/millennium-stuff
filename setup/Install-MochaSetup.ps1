@@ -52,16 +52,9 @@ $MillenniumInstallerUrl = 'https://github.com/SteamClientHomebrew/Installer/rele
 function Step([string]$text) { Write-Host "==> $text" }
 function Note([string]$text) { Write-Host "    $text" }
 
-# Windows PowerShell blocks script files under its default policy, so child scripts run with Bypass.
-function ConvertTo-ChildArguments($bound) {
-    $list = @()
-    foreach ($key in $bound.Keys) {
-        $value = $bound[$key]
-        if ($value -is [switch]) { if ($value.IsPresent) { $list += "-$key" } }
-        else { $list += "-$key"; $list += [string]$value }
-    }
-    return ,$list
-}
+# Windows PowerShell blocks script files under its default policy, so the child
+# scripts run in their own process with Bypass. Bound parameters forward with
+# @PSBoundParameters.
 
 # Without a repository on disk (irm | iex), download the repository and run its copy of this script.
 $repoRoot = $null
@@ -81,7 +74,7 @@ if (-not $repoRoot) {
     } | Select-Object -First 1
     if (-not $extracted) { throw 'The downloaded archive does not contain the setup folder.' }
     $childScript = Join-Path $extracted.FullName 'setup\Install-MochaSetup.ps1'
-    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $childScript @(ConvertTo-ChildArguments $PSBoundParameters)
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $childScript @PSBoundParameters
     return
 }
 
