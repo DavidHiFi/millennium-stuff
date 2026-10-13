@@ -53,8 +53,9 @@ function Step([string]$text) { Write-Host "==> $text" }
 function Note([string]$text) { Write-Host "    $text" }
 
 # Windows PowerShell blocks script files under its default policy, so the child
-# scripts run in their own process with Bypass. Bound parameters forward with
-# @PSBoundParameters.
+# scripts run in their own process with Bypass. A hashtable splatted into a native
+# command does not become named parameters, so the bound parameters are rebuilt
+# as an argument list. Add any new parameter here too.
 
 # Without a repository on disk (irm | iex), download the repository and run its copy of this script.
 $repoRoot = $null
@@ -74,7 +75,12 @@ if (-not $repoRoot) {
     } | Select-Object -First 1
     if (-not $extracted) { throw 'The downloaded archive does not contain the setup folder.' }
     $childScript = Join-Path $extracted.FullName 'setup\Install-MochaSetup.ps1'
-    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $childScript @PSBoundParameters
+    $childArgs = @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $childScript)
+    if ($SteamPath) { $childArgs += @('-SteamPath', $SteamPath) }
+    if ($Audit) { $childArgs += '-Audit' }
+    if ($SkipMillenniumInstall) { $childArgs += '-SkipMillenniumInstall' }
+    if ($SkipTheme) { $childArgs += '-SkipTheme' }
+    & powershell.exe @childArgs
     return
 }
 
