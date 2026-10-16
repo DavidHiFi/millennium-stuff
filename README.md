@@ -71,6 +71,22 @@ The [MochaSteam repository](https://github.com/DavidHiFi/MochaSteam) has `skin.j
 
 The native menu blur was checked with paired high-contrast captures. Steam updates can change selectors or popup behavior, and those tests do not cover every future client state.
 
+## Contributing
+
+Bug reports, feature ideas and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for setup, checks and what to include.
+
+## Star history
+
+⭐ Thanks for the stars, Steam client reports and plugin fixes.
+
+<a href="https://www.star-history.com/?repos=DavidHiFi%2Fmillennium-stuff&amp;type=date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=DavidHiFi/millennium-stuff&amp;type=date&amp;theme=dark&amp;legend=top-left" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=DavidHiFi/millennium-stuff&amp;type=date" />
+    <img alt="DavidHiFi/millennium-stuff GitHub star history" src="https://api.star-history.com/chart?repos=DavidHiFi/millennium-stuff&amp;type=date" />
+  </picture>
+</a>
+
 ## Credits and licenses
 
 SpaceTheme by SpaceEnergy is MIT licensed. DWMX by ejalxndr is Apache-2.0 licensed. Catppuccin is MIT licensed. Third-party plugins keep their own licenses. DavidHiFi's changes are MIT licensed. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
