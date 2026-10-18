@@ -142,14 +142,6 @@ pnpm build
 
 </details>
 
----
-
-## Support development
-
-The theme is free and always will be. If it makes Steam nicer to look at, a coffee keeps it working after the next Steam update.
-
-[![Support DavidHiFi on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/davidhifi)
-
 ## Contributing
 
 Reports of Steam updates that break the theme help the most, with a screenshot, along with fixes to the setup script and the plugin manifest.
