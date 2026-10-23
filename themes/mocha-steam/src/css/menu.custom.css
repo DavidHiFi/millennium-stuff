@@ -28,6 +28,13 @@ body.DesktopUI .PP7LM0Ow1K5qkR8WElLpt {
     overflow: clip !important;
 }
 
+/* The card fills its popup window edge to edge, and dwmx gives that window
+   Windows 11's 8px rounded corners and frame. A larger card radius leaves the
+   window's own frame and acrylic showing outside the card's curve. */
+html.ContextMenuPopup body.DesktopUI .PP7LM0Ow1K5qkR8WElLpt {
+    border-radius: 8px;
+}
+
 body.DesktopUI :has(._1bGewp3tfzqAF6fVTFFUOz:not([style="display: none;"])) .PP7LM0Ow1K5qkR8WElLpt {
     left: calc(16px + 12px) !important;
 }
