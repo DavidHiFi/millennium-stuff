@@ -65,7 +65,7 @@ Add `-SteamPath 'D:\Steam'` for a Steam folder elsewhere, or `-SkipMillenniumIns
 
 - **Catppuccin Mocha:** the Mocha palette with Blue and Lavender accents, across Library, Store, settings, friends and chat.
 - **Rounded controls:** rounded cards, menus, dropdowns and buttons that keep their corners.
-- **Frosted menus:** menus, tooltips, dropdowns and dialogs blur what sits behind them.
+- **Frosted dropdowns:** dropdowns and notification popups blur what sits behind them. Popup menu cards use a solid Mocha fill, because acrylic does not show reliably on Steam's reused menu popups.
 - **Native acrylic:** Windows 11 acrylic behind Steam's separate popup windows, through DWMX.
 - **Tidy library:** game icons and ProtonDB indicators line up in one column.
 - **Library frame:** the sidebar, the Downloads bar and the user panel sit inside one frame below the top bar.
