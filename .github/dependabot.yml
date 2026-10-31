@@ -1,0 +1,9 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/plugins/dwmx-src"
+    schedule:
+      interval: "weekly"
+    groups:
+      npm-updates:
+        patterns: ["*"]
