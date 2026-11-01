@@ -24,13 +24,13 @@
     {
       "folder": "achievement-groups",
       "id": "achievement-groups",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "enabled": true,
       "source": {
         "type": "release",
         "repo": "BossSloth/SteamHunter-plugin",
-        "tag": "v2.1.0",
-        "asset": "Achievement-Groups-plugin-2.1.0.zip"
+        "tag": "v2.1.1",
+        "asset": "Achievement-Groups-plugin-2.1.1.zip"
       }
     },
     {
@@ -84,25 +84,25 @@
     {
       "folder": "easy-restart-reload-for-steam",
       "id": "easy-restart-reload-for-steam",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "enabled": true,
       "source": {
         "type": "manual",
         "repo": "SaiyajinK/Easy-Restart-Reload-for-Steam",
-        "commit": "dc79ae21c6a71af946fd71b5867eee1b179ea184",
+        "commit": "01f10fdaee913393d3c8379793cabc1953bc3c06",
         "note": "No license published"
       }
     },
     {
       "folder": "extendium",
       "id": "extendium",
-      "version": "2.0.4",
+      "version": "2.0.5",
       "enabled": true,
       "source": {
         "type": "release",
         "repo": "BossSloth/Extendium",
-        "tag": "v2.0.4",
-        "asset": "extendium-2.0.4.zip"
+        "tag": "v2.0.5",
+        "asset": "extendium-2.0.5.zip"
       }
     },
     {
@@ -226,13 +226,13 @@
     {
       "folder": "size-on-disk",
       "id": "size-on-disk",
-      "version": "1.2.0",
+      "version": "1.2.1",
       "enabled": true,
       "source": {
         "type": "release",
         "repo": "k0d13/steam-size-on-disk",
-        "tag": "v1.2.0",
-        "asset": "size-on-disk-1.2.0.zip"
+        "tag": "v1.2.1",
+        "asset": "size-on-disk-1.2.1.zip"
       }
     },
     {
