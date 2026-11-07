@@ -12,7 +12,7 @@
   "license": "MIT",
   "dependencies": {
     "@steambrew/client": "^5.5.14",
-    "@steambrew/ttc": "^2.7.5"
+    "@steambrew/ttc": "^3.3.7"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
